@@ -73,9 +73,9 @@ export default function App() {
     <div className="app">
       <section className="hero">
         <div className="hero-bg" />
+        <div className="hero-badge">Meal Planner</div>
         <div className="hero-content">
 
-          <div className="hero-badge">Meal Planner</div>
           <h1 className="hero-title">What's for Lunch?</h1>
           <p className="hero-sub">{foods.length} food{foods.length !== 1 ? 's' : ''} in your list</p>
           <div className="hero-actions">
