@@ -580,7 +580,7 @@ h2 {
 
 .btn-confirm {
   padding: 10px 24px;
-  background: var(--green-400);
+  background: var(--purple-500);
   color: white;
   border: none;
   border-radius: var(--radius-sm);
@@ -592,7 +592,7 @@ h2 {
 }
 
 .btn-confirm:hover {
-  background: var(--green-500);
+  background: var(--purple-600);
 }
 
 .btn-confirm:active {
