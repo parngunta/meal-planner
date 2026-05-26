@@ -34,17 +34,23 @@ export default function FoodPicker({ foods, history, onPick, exclusionDays }: Fo
       if (roll <= 0) {
         setResult(f)
         setPicked(true)
-        onPick({
-          id: String(Date.now()),
-          foodId: f.id,
-          foodName: f.name,
-          mealType: selectedMeal,
-          date: new Date().toISOString().slice(0, 10),
-          timestamp: Date.now(),
-        })
         return
       }
     }
+  }
+
+  function confirmPick() {
+    if (!result) return
+    onPick({
+      id: String(Date.now()),
+      foodId: result.id,
+      foodName: result.name,
+      mealType: selectedMeal,
+      date: new Date().toISOString().slice(0, 10),
+      timestamp: Date.now(),
+    })
+    setResult(null)
+    setPicked(false)
   }
 
   const eligible = getEligibleFoods()
@@ -88,7 +94,10 @@ export default function FoodPicker({ foods, history, onPick, exclusionDays }: Fo
         <p className="eligible-count">{eligible.length} meals eligible · skip {exclusionDays}d</p>
 
         {picked && result && (
-          <button className="btn-secondary" onClick={() => pickRandom()}>Re-roll</button>
+          <div className="pick-actions">
+            <button className="btn-secondary" onClick={() => pickRandom()}>Re-roll</button>
+            <button className="btn-confirm" onClick={confirmPick}>Confirm</button>
+          </div>
         )}
       </div>
     </div>

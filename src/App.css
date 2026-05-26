@@ -7,21 +7,21 @@
 }
 
 :root {
-  --purple-50: #e8e8f0;
-  --purple-100: #d8d8e8;
-  --purple-200: #c0c0d8;
-  --purple-300: #a8a8c8;
-  --purple-400: #9090c0;
-  --purple-500: #7878c8;
-  --purple-600: #6060b0;
-  --purple-700: #484898;
-  --green-50: #f0f8e0;
-  --green-100: #e0f0c8;
-  --green-200: #c8e0a0;
-  --green-300: #b0d078;
-  --green-400: #a0c850;
-  --green-500: #88b038;
-  --green-600: #709028;
+  --purple-50: #eeeeff;
+  --purple-100: #dfe0f8;
+  --purple-200: #c6cade;
+  --purple-300: #adb0dc;
+  --purple-400: #9e98d4;
+  --purple-500: #9082c8;
+  --purple-600: #826cbc;
+  --purple-700: #7456ae;
+  --green-50: #eef9e4;
+  --green-100: #d5f1cb;
+  --green-200: #afe898;
+  --green-300: #a8e4a0;
+  --green-400: #9ec67a;
+  --green-500: #6eaa40;
+  --green-600: #508e28;
   --warm-50: #f8f0e8;
   --warm-100: #f0e0c8;
   --warm-200: #e8c8a0;
@@ -568,6 +568,33 @@ h2 {
 }
 
 .btn-secondary:active {
+  transform: scale(0.97);
+}
+
+.pick-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.btn-confirm {
+  padding: 10px 24px;
+  background: var(--green-400);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-confirm:hover {
+  background: var(--green-500);
+}
+
+.btn-confirm:active {
   transform: scale(0.97);
 }
 
