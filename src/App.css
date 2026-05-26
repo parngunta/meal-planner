@@ -113,9 +113,7 @@ body {
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  position: absolute;
-  top: 10px;
-  left: 20px;
+  margin-bottom: 4px;
 }
 
 .hero-title {
@@ -125,15 +123,16 @@ body {
   letter-spacing: -0.02em;
   line-height: 1.15;
   margin-bottom: 4px;
-  transform: translateY(16px);
+  transform: translateY(3px);
 }
 
 .hero-sub {
   font-size: 0.78rem;
   color: var(--text-muted);
   font-weight: 400;
-  margin-bottom: 12px;
-  transform: translateY(10px);
+  position: absolute;
+  bottom: 24px;
+  right: 20px;
 }
 
 .hero-actions {
