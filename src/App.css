@@ -113,7 +113,9 @@ body {
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 4px;
+  position: absolute;
+  top: 10px;
+  right: 20px;
 }
 
 .hero-title {
