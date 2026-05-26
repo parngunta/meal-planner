@@ -90,6 +90,7 @@ export default function App() {
       <section className="hero">
         <div className="hero-bg" />
         <div className="hero-content">
+          <img className="hero-img" src="./food.avif" alt="Meal" />
           <div className="hero-badge">Meal Planner</div>
           <h1 className="hero-title">What's for Dinner?</h1>
           <p className="hero-sub">{foods.length} food{foods.length !== 1 ? 's' : ''} in your list</p>
