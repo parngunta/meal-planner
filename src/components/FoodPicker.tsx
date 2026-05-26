@@ -13,6 +13,7 @@ export default function FoodPicker({ foods, history, onPick, exclusionDays }: Fo
   const [selectedMeal, setSelectedMeal] = useState<MealType>('lunch')
   const [result, setResult] = useState<Food | null>(null)
   const [picked, setPicked] = useState(false)
+  const [confirmed, setConfirmed] = useState(false)
 
   function getEligibleFoods(): Food[] {
     const cutoff = Date.now() - exclusionDays * 86400000
@@ -34,13 +35,14 @@ export default function FoodPicker({ foods, history, onPick, exclusionDays }: Fo
       if (roll <= 0) {
         setResult(f)
         setPicked(true)
+        setConfirmed(false)
         return
       }
     }
   }
 
   function confirmPick() {
-    if (!result) return
+    if (!result || confirmed) return
     onPick({
       id: String(Date.now()),
       foodId: result.id,
@@ -49,8 +51,7 @@ export default function FoodPicker({ foods, history, onPick, exclusionDays }: Fo
       date: new Date().toISOString().slice(0, 10),
       timestamp: Date.now(),
     })
-    setResult(null)
-    setPicked(false)
+    setConfirmed(true)
   }
 
   const eligible = getEligibleFoods()
@@ -58,7 +59,15 @@ export default function FoodPicker({ foods, history, onPick, exclusionDays }: Fo
   return (
     <div className="food-picker">
       {picked && result && (
-        <div className="pick-result">
+        <div className={`pick-result${confirmed ? ' confirmed' : ''}`}>
+          {confirmed && (
+            <div className="pick-confirmed-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>Added to history</span>
+            </div>
+          )}
           <span className="pick-result-emoji">{MEAL_EMOJIS[selectedMeal]}</span>
           <span className="pick-result-name">{result.name}</span>
           <div className="pick-result-details">
@@ -77,7 +86,7 @@ export default function FoodPicker({ foods, history, onPick, exclusionDays }: Fo
       <div className="picker-controls">
         <div className="chip-group">
           {MEAL_TYPES.map(m => (
-            <button type="button" key={m} className={`chip ${selectedMeal === m ? 'active' : ''}`} onClick={() => { setSelectedMeal(m); setPicked(false) }}>
+            <button type="button" key={m} className={`chip ${selectedMeal === m ? 'active' : ''}`} onClick={() => { setSelectedMeal(m); setPicked(false); setConfirmed(false) }}>
               {MEAL_EMOJIS[m]} {MEAL_LABELS[m]}
             </button>
           ))}
@@ -96,7 +105,7 @@ export default function FoodPicker({ foods, history, onPick, exclusionDays }: Fo
         {picked && result && (
           <div className="pick-actions">
             <button className="btn-secondary" onClick={() => pickRandom()}>Re-roll</button>
-            <button className="btn-confirm" onClick={confirmPick}>Confirm</button>
+            {!confirmed && <button className="btn-confirm" onClick={confirmPick}>Confirm</button>}
           </div>
         )}
       </div>

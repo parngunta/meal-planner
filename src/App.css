@@ -509,6 +509,7 @@ h2 {
   flex-direction: column;
   gap: 12px;
   align-items: center;
+  margin-top: 20px;
 }
 
 .picker-controls .chip-group {
@@ -633,6 +634,40 @@ h2 {
   font-size: 0.82rem;
   color: var(--text-muted);
   margin-bottom: 16px;
+}
+
+.pick-result.confirmed {
+  border: 2px solid var(--green-400);
+  border-radius: var(--radius-md);
+  margin: 0 -8px;
+  padding: 20px 16px 12px;
+  box-shadow: 0 0 12px rgba(158, 198, 122, 0.3);
+  animation: confirmGlow 0.4s ease-out;
+}
+
+@keyframes confirmGlow {
+  0% { box-shadow: 0 0 0 rgba(158, 198, 122, 0); }
+  50% { box-shadow: 0 0 20px rgba(158, 198, 122, 0.5); }
+  100% { box-shadow: 0 0 12px rgba(158, 198, 122, 0.3); }
+}
+
+.pick-confirmed-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--green-50);
+  color: var(--green-600);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+  animation: badgePop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes badgePop {
+  from { opacity: 0; transform: scale(0.8) translateY(-4px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 /* ===== HISTORY ===== */
