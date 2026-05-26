@@ -102,7 +102,7 @@ export default function App() {
                 </svg>
                 Skip{' '}
                 <select value={exclusionDays} onChange={e => setExclusionDays(Number(e.target.value))}>
-                  {[1, 2, 3, 5, 7, 14].map(d => (
+                  {[0, 1, 2, 3, 5, 7, 14].map(d => (
                     <option key={d} value={d}>{d}d</option>
                   ))}
                 </select>
