@@ -753,7 +753,7 @@ h2 {
   }
 
   .bottom-nav {
-    display: none;
+    display: none !important;
   }
 
   .tab {
@@ -779,12 +779,6 @@ h2 {
 
   .pick-result-name {
     font-size: 1.7rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .bottom-nav {
-    display: none !important;
   }
 }
 

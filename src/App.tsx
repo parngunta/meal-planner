@@ -19,34 +19,18 @@ const TABS: { key: Tab; label: string; icon: string }[] = [
 ]
 
 function TabIcon({ name }: { name: string }) {
-  if (name === 'shuffle') return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="16 3 21 3 21 8" /><line x1="4" y1="20" x2="21" y2="3" />
-      <polyline points="21 16 21 21 16 21" /><line x1="15" y1="15" x2="21" y2="21" /><line x1="4" y1="4" x2="9" y2="9" />
+  const m: Record<string, string> = {
+    shuffle: 'M16 3h5v5M4 20l17-17M16 21h5v-5M15 15l6 6M4 4l5 5',
+    plus: 'M12 5v14M5 12h14',
+    list: 'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01',
+    calendar: 'M3 4h18v18H3zM16 2v4M8 2v4M3 10h18',
+    clock: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM12 6v6l4 2',
+  }
+  return m[name] ? (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d={m[name]} />
     </svg>
-  )
-  if (name === 'plus') return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="16" /><line x1="8" y1="12" x2="16" y2="12" />
-    </svg>
-  )
-  if (name === 'list') return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" />
-      <line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" />
-    </svg>
-  )
-  if (name === 'calendar') return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
-    </svg>
-  )
-  if (name === 'clock') return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
-    </svg>
-  )
-  return null
+  ) : null
 }
 
 export default function App() {
@@ -90,7 +74,7 @@ export default function App() {
       <section className="hero">
         <div className="hero-bg" />
         <div className="hero-content">
-          <img className="hero-img" src="./food.avif" alt="Meal" />
+          <img className="hero-img" src="/food.avif" alt="Meal" />
           <div className="hero-badge">Meal Planner</div>
           <h1 className="hero-title">What's for Dinner?</h1>
           <p className="hero-sub">{foods.length} food{foods.length !== 1 ? 's' : ''} in your list</p>
