@@ -53,7 +53,7 @@ export default function App() {
   const [foods, setFoods] = useState<Food[]>(loadFoods)
   const [history, setHistory] = useState<HistoryEntry[]>(loadHistory)
   const [tab, setTab] = useState<Tab>('pick')
-  const [exclusionDays, setExclusionDays] = useState(3)
+  const [exclusionDays, setExclusionDays] = useState(0)
 
   const addFood = useCallback((f: Food) => {
     setFoods(prev => {
