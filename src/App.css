@@ -99,7 +99,7 @@ body {
 
 .hero-content {
   position: relative;
-  padding: 24px 20px 20px;
+  padding: 50px 20px 8px;
   width: 100%;
   background: linear-gradient(0deg, rgba(240,240,200,0.85) 0%, rgba(240,240,200,0.3) 60%, transparent 100%);
 }
@@ -138,7 +138,7 @@ body {
   color: var(--text-muted);
   font-weight: 400;
   margin-bottom: 0;
-  margin-top: 0;
+  margin-top: 6px;
 }
 
 .hero-actions {
@@ -147,6 +147,7 @@ body {
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
+  padding-top: 24px;
 }
 
 .exclusion-control label {
