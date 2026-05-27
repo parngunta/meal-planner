@@ -1,14 +1,23 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import type { Food, HistoryEntry } from './types'
 import { loadFoods, saveFoods, loadHistory, saveHistory } from './storage'
+import { isConfigured } from './firebase'
+import {
+  addFoodToRoom,
+  removeFoodFromRoom,
+  listenToRoom,
+  getCurrentRoom,
+  stopListening,
+} from './roomService'
 import FoodForm from './components/FoodForm'
 import FoodList from './components/FoodList'
 import FoodPicker from './components/FoodPicker'
 import History from './components/History'
 import WeekPlanner from './components/WeekPlanner'
+import RoomManager from './components/RoomManager'
 import './App.css'
 
-type Tab = 'add' | 'foods' | 'pick' | 'history' | 'week'
+type Tab = 'pick' | 'add' | 'foods' | 'history' | 'week'
 
 const TABS: { key: Tab; label: string; icon: string }[] = [
   { key: 'pick', label: 'Pick', icon: 'shuffle' },
@@ -38,23 +47,59 @@ export default function App() {
   const [history, setHistory] = useState<HistoryEntry[]>(loadHistory)
   const [tab, setTab] = useState<Tab>('pick')
   const [exclusionDays, setExclusionDays] = useState(0)
+  const [currentRoom, setCurrentRoom] = useState<string | null>(isConfigured ? getCurrentRoom() : null)
+  const unlistenRef = useRef<(() => void) | null>(null)
+  const inRoom = isConfigured && currentRoom !== null
+
+  useEffect(() => {
+    if (!isConfigured || !currentRoom) return
+    const unlisten = listenToRoom(currentRoom, (roomFoods) => {
+      setFoods(roomFoods)
+      saveFoods(roomFoods)
+    })
+    unlistenRef.current = unlisten
+    return () => {
+      unlisten()
+      unlistenRef.current = null
+    }
+  }, [currentRoom])
 
   const addFood = useCallback((f: Food) => {
-    setFoods(prev => {
-      const next = [...prev, f]
-      saveFoods(next)
-      return next
-    })
+    if (inRoom && currentRoom) {
+      addFoodToRoom(currentRoom, f).catch(() => {
+        setFoods(prev => {
+          const next = [...prev, f]
+          saveFoods(next)
+          return next
+        })
+      })
+    } else {
+      setFoods(prev => {
+        const next = [...prev, f]
+        saveFoods(next)
+        return next
+      })
+    }
     setTab('foods')
-  }, [])
+  }, [inRoom, currentRoom])
 
   const deleteFood = useCallback((id: string) => {
-    setFoods(prev => {
-      const next = prev.filter(f => f.id !== id)
-      saveFoods(next)
-      return next
-    })
-  }, [])
+    if (inRoom && currentRoom) {
+      removeFoodFromRoom(currentRoom, id).catch(() => {
+        setFoods(prev => {
+          const next = prev.filter(f => f.id !== id)
+          saveFoods(next)
+          return next
+        })
+      })
+    } else {
+      setFoods(prev => {
+        const next = prev.filter(f => f.id !== id)
+        saveFoods(next)
+        return next
+      })
+    }
+  }, [inRoom, currentRoom])
 
   const addHistoryEntry = useCallback((entry: HistoryEntry) => {
     setHistory(prev => {
@@ -68,6 +113,20 @@ export default function App() {
     setHistory([])
     saveHistory([])
   }, [])
+
+  function handleJoinRoom(code: string) {
+    setCurrentRoom(code)
+  }
+
+  function handleLeaveRoom() {
+    if (unlistenRef.current) {
+      unlistenRef.current()
+      unlistenRef.current = null
+    }
+    stopListening()
+    setCurrentRoom(null)
+    setFoods(loadFoods())
+  }
 
   return (
     <div className="app">
@@ -96,6 +155,12 @@ export default function App() {
       </section>
 
       <main className="app-main">
+        <RoomManager
+          currentRoom={currentRoom}
+          onJoin={handleJoinRoom}
+          onLeave={handleLeaveRoom}
+        />
+
         <nav className="tab-nav">
           {TABS.map(t => (
             <button key={t.key} className={`tab ${tab === t.key ? 'active' : ''}`} onClick={() => setTab(t.key)}>
