@@ -12,7 +12,7 @@
   --purple-200: #c6cade;
   --purple-300: #adb0dc;
   --purple-400: #9e98d4;
-  --purple-500: #9082c8;
+  --purple-500: #a494d6;
   --purple-600: #826cbc;
   --purple-700: #7456ae;
   --green-50: #eef9e4;
@@ -188,8 +188,8 @@ body {
   display: flex;
   gap: 4px;
   margin-bottom: 16px;
-  background: #f5e6d4;
-  border-radius: var(--radius);
+  background: #484838;
+  border-radius: var(--radius-sm);
   padding: 4px;
 }
 
@@ -199,13 +199,13 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  padding: 8px 4px;
+  padding: 5px 4px;
   border: none;
   background: transparent;
   border-radius: var(--radius-sm);
   font-size: 0.75rem;
   font-weight: 600;
-  color: #7a6a55;
+  color: white;
   cursor: pointer;
   transition: all 0.15s;
   -webkit-tap-highlight-color: transparent;
@@ -1139,8 +1139,8 @@ h2 {
 }
 
 .room-idle {
-  background: #fef0f5;
-  border-color: #f5d0dc;
+  background: var(--green-50);
+  border-color: var(--green-100);
 }
 
 .room-active {
