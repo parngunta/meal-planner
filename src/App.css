@@ -40,7 +40,7 @@
   --stone-800: #303028;
   --stone-900: #202018;
 
-  --bg: #f0f0c8;
+  --bg: #F0DCC8;
   --card: #f0f0f0;
   --text: var(--stone-700);
   --text-muted: var(--stone-500);
@@ -51,7 +51,7 @@
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
   --shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.06);
-  --hero-bg-image: url('/foodpic.png');
+  --hero-bg-image: url('/foodbanner.png');
 }
 
 html {
@@ -88,6 +88,7 @@ body {
   align-items: flex-end;
   flex-shrink: 0;
   margin: 0;
+  margin-top: -24px;
 }
 
 .hero-bg {
@@ -129,12 +130,16 @@ body {
 }
 
 .hero-sub {
-  font-size: 0.78rem;
+  display: none;
+}
+
+.food-count-text {
+  font-size: 0.68rem;
   color: var(--text-muted);
   font-weight: 400;
-  position: absolute;
-  bottom: 24px;
-  right: 20px;
+  text-align: right;
+  margin-bottom: 16px;
+  margin-top: -18px;
 }
 
 .hero-actions {
@@ -198,7 +203,7 @@ body {
   border: none;
   background: transparent;
   border-radius: var(--radius-sm);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-muted);
   cursor: pointer;
@@ -249,7 +254,7 @@ body {
   border: none;
   background: transparent;
   border-radius: var(--radius-sm);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-muted);
   cursor: pointer;
@@ -863,7 +868,7 @@ h2 {
   padding: 10px 12px;
   background: var(--bg);
   border-radius: var(--radius-sm);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   align-items: center;
   border: 1px solid transparent;
 }
@@ -996,7 +1001,7 @@ h2 {
     flex-direction: row;
     gap: 6px;
     padding: 10px 14px;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
   }
 
   .food-grid {

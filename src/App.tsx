@@ -198,9 +198,8 @@ export default function App() {
       <section className="hero">
         <div className="hero-bg" />
         <div className="hero-badge">Meal Planner</div>
-        <p className="hero-sub">{foods.length} food{foods.length !== 1 ? 's' : ''} in your list</p>
         <div className="hero-content">
-          <h1 className="hero-title">What's for Lunch?</h1>
+
           <div className="hero-actions">
             <div className="exclusion-control">
               <label>
@@ -220,6 +219,7 @@ export default function App() {
       </section>
 
       <main className="app-main">
+        <p className="food-count-text">{foods.length} food{foods.length !== 1 ? 's' : ''} in your list</p>
         <RoomManager
           currentRoom={currentRoom}
           onJoin={handleJoinRoom}
