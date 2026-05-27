@@ -30,6 +30,7 @@ export default function FoodForm({ onAdd }: FoodFormProps) {
   const [mealTypes, setMealTypes] = useState<MealType[]>([])
   const [cuisine, setCuisine] = useState('')
   const [rating, setRating] = useState(3)
+  const [comment, setComment] = useState('')
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -40,12 +41,14 @@ export default function FoodForm({ onAdd }: FoodFormProps) {
       mealTypes,
       cuisine,
       rating,
+      comment: comment.trim(),
       createdAt: Date.now(),
     })
     setName('')
     setMealTypes([])
     setCuisine('')
     setRating(3)
+    setComment('')
   }
 
   function toggleMeal(m: MealType) {
@@ -90,6 +93,16 @@ export default function FoodForm({ onAdd }: FoodFormProps) {
       <div className="ff-field">
         <label className="ff-label">Rating</label>
         <StarRating value={rating} onChange={setRating} />
+      </div>
+
+      <div className="ff-field">
+        <label className="ff-label">Comment <span className="ff-optional">(optional)</span></label>
+        <input
+          className="ff-comment-input"
+          value={comment}
+          onChange={e => setComment(e.target.value)}
+          placeholder="e.g. Best with extra sauce"
+        />
       </div>
 
       <button type="submit" disabled={!name.trim() || mealTypes.length === 0}>

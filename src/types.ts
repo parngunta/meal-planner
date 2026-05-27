@@ -24,6 +24,7 @@ export interface Food {
   mealTypes: MealType[]
   cuisine: string
   rating: number
+  comment?: string
   createdAt: number
 }
 

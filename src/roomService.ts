@@ -61,6 +61,11 @@ export async function removeFoodFromRoom(roomCode: string, foodId: string): Prom
   await remove(ref(db, `${ROOMS_KEY}/${roomCode}/foods/${foodId}`))
 }
 
+export async function updateFoodToRoom(roomCode: string, food: Food): Promise<void> {
+  if (!db || !isConfigured) throw new Error('Firebase not configured')
+  await set(ref(db, `${ROOMS_KEY}/${roomCode}/foods/${food.id}`), food)
+}
+
 let currentListenerRoom: string | null = null
 
 export function listenToRoom(roomCode: string, onUpdate: (foods: Food[]) => void): () => void {

@@ -319,6 +319,30 @@ h2 {
   font-weight: 500;
 }
 
+.ff-comment-input {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-family: inherit;
+  background: white;
+  color: var(--text);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+}
+
+.ff-comment-input:focus {
+  border-color: var(--purple-400);
+  box-shadow: 0 0 0 3px var(--purple-100);
+}
+
+.ff-comment-input::placeholder {
+  color: var(--stone-300);
+  font-weight: 400;
+}
+
 .ff-label {
   display: block;
   font-size: 0.72rem;
@@ -452,6 +476,96 @@ h2 {
   gap: 8px;
 }
 
+.swipe-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.swipe-content {
+  position: relative;
+  z-index: 2;
+  touch-action: pan-y;
+}
+
+.swipe-delete {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: #e74c3c;
+  border: none;
+  color: white;
+  font-family: inherit;
+  font-size: 0.65rem;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 1;
+  padding: 0;
+}
+
+.swipe-delete:hover {
+  background: #c0392b;
+}
+
+.drag-handle {
+  background: none;
+  border: none;
+  color: var(--stone-400);
+  cursor: grab;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.drag-handle:hover {
+  color: var(--stone-600);
+  background: var(--stone-100);
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.food-card-header-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.food-card-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.edit-form .ff-field {
+  margin-bottom: 12px;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.edit-actions .btn-confirm {
+  flex: 1;
+}
+
+.edit-actions .btn-secondary {
+  flex: 1;
+  text-align: center;
+}
+
 .food-card {
   padding: 14px 16px;
   border: 1px solid var(--border);
@@ -501,6 +615,17 @@ h2 {
   font-weight: 600;
   color: var(--text-muted);
   margin-right: 2px;
+}
+
+.food-comment {
+  width: 100%;
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.desktop-delete {
+  display: none;
 }
 
 /* ===== FOOD PICKER ===== */
@@ -834,6 +959,14 @@ h2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
+  }
+
+  .desktop-delete {
+    display: flex;
+  }
+
+  .swipe-delete {
+    display: none;
   }
 
   .week-grid {

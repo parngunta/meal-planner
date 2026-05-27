@@ -5,6 +5,7 @@ import { isConfigured } from './firebase'
 import {
   addFoodToRoom,
   removeFoodFromRoom,
+  updateFoodToRoom,
   listenToRoom,
   getCurrentRoom,
   stopListening,
@@ -101,6 +102,29 @@ export default function App() {
     }
   }, [inRoom, currentRoom])
 
+  const reorderFoods = useCallback((reordered: Food[]) => {
+    setFoods(reordered)
+    saveFoods(reordered)
+  }, [])
+
+  const updateFood = useCallback((updated: Food) => {
+    if (inRoom && currentRoom) {
+      updateFoodToRoom(currentRoom, updated).catch(() => {
+        setFoods(prev => {
+          const next = prev.map(f => f.id === updated.id ? updated : f)
+          saveFoods(next)
+          return next
+        })
+      })
+    } else {
+      setFoods(prev => {
+        const next = prev.map(f => f.id === updated.id ? updated : f)
+        saveFoods(next)
+        return next
+      })
+    }
+  }, [inRoom, currentRoom])
+
   const addHistoryEntry = useCallback((entry: HistoryEntry) => {
     setHistory(prev => {
       const next = [...prev, entry]
@@ -171,7 +195,7 @@ export default function App() {
         </nav>
 
         {tab === 'add' && <FoodForm onAdd={addFood} />}
-        {tab === 'foods' && <FoodList foods={foods} onDelete={deleteFood} />}
+        {tab === 'foods' && <FoodList foods={foods} onDelete={deleteFood} onReorder={reorderFoods} onEdit={updateFood} />}
         {tab === 'pick' && (
           <FoodPicker foods={foods} history={history} onPick={addHistoryEntry} exclusionDays={exclusionDays} />
         )}
