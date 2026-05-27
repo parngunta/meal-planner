@@ -1139,8 +1139,8 @@ h2 {
 }
 
 .room-idle {
-  background: var(--green-50);
-  border-color: var(--green-100);
+  background: #eef4ff;
+  border-color: #d4e4fc;
 }
 
 .room-active {
