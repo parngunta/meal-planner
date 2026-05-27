@@ -66,7 +66,7 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
   }
 
   return (
-    <div className={`room-manager${currentRoom ? ' room-active' : ''}${!open ? ' room-collapsed' : ''}`}>
+    <div className={`room-manager${currentRoom ? ' room-active' : ' room-idle'}${!open ? ' room-collapsed' : ''}`}>
       <button className="room-toggle" onClick={() => setOpen(!open)}>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />

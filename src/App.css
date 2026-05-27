@@ -1138,6 +1138,11 @@ h2 {
   cursor: not-allowed;
 }
 
+.room-idle {
+  background: #fef0f5;
+  border-color: #f5d0dc;
+}
+
 .room-active {
   background: var(--purple-50);
   border-color: var(--purple-200);
