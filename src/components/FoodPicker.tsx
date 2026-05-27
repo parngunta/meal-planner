@@ -59,7 +59,7 @@ export default function FoodPicker({ foods, history, onPick, exclusionDays }: Fo
   return (
     <div className="food-picker">
       {picked && result && (
-        <div className={`pick-result${confirmed ? ' confirmed' : ''}`}>
+        <div className="pick-result">
           {confirmed && (
             <div className="pick-confirmed-badge">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">

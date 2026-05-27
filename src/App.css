@@ -41,7 +41,7 @@
   --stone-900: #202018;
 
   --bg: #F0DCC8;
-  --card: #f0f0f0;
+  --card: #f5f5f5;
   --text: var(--stone-700);
   --text-muted: var(--stone-500);
   --border: var(--stone-200);
@@ -137,14 +137,14 @@ body {
   font-size: 0.68rem;
   color: var(--text-muted);
   font-weight: 400;
-  text-align: right;
-  margin-bottom: 16px;
-  margin-top: -18px;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 .hero-actions {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
 }
@@ -188,7 +188,7 @@ body {
   display: flex;
   gap: 4px;
   margin-bottom: 16px;
-  background: var(--bg);
+  background: #f5e6d4;
   border-radius: var(--radius);
   padding: 4px;
 }
@@ -205,7 +205,7 @@ body {
   border-radius: var(--radius-sm);
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--text-muted);
+  color: #7a6a55;
   cursor: pointer;
   transition: all 0.15s;
   -webkit-tap-highlight-color: transparent;
@@ -236,8 +236,8 @@ body {
   left: 0;
   right: 0;
   display: flex;
-  background: var(--card);
-  border-top: 1px solid var(--border);
+  background: #fdf8f2;
+  border-top: 1px solid var(--warm-200);
   padding: 4px 8px;
   padding-bottom: max(4px, env(safe-area-inset-bottom));
   z-index: 200;
@@ -1026,10 +1026,44 @@ h2 {
 /* ===== ROOM MANAGER ===== */
 .room-manager {
   margin-bottom: 16px;
-  padding: 14px 16px;
+  padding: 0;
   background: var(--bg);
   border-radius: var(--radius);
   border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.room-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  border: none;
+  background: transparent;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--text);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.room-toggle:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.room-chevron {
+  margin-left: auto;
+  transition: transform 0.2s;
+}
+
+.room-chevron-open {
+  transform: rotate(180deg);
+}
+
+.room-body {
+  padding: 0 14px 14px;
 }
 
 .room-intro {
