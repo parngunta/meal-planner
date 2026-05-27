@@ -624,8 +624,8 @@ h2 {
   font-size: 0.72rem;
 }
 
-.desktop-delete {
-  display: none;
+.edit-form .ff-field {
+  margin-bottom: 12px;
 }
 
 /* ===== FOOD PICKER ===== */
@@ -959,14 +959,6 @@ h2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
-  }
-
-  .desktop-delete {
-    display: flex;
-  }
-
-  .swipe-delete {
-    display: none;
   }
 
   .week-grid {
