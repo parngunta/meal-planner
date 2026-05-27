@@ -202,24 +202,42 @@ function SortableFoodCard({ food, onDelete, onEdit }: { food: Food; onDelete: (i
   )
 }
 
+type MealFilter = MealType | 'all'
+
 export default function FoodList({ foods, onDelete, onReorder, onEdit }: FoodListProps) {
+  const [filter, setFilter] = useState<MealFilter>('all')
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
     useSensor(TouchSensor, { activationConstraint: { delay: 250, tolerance: 8 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
   )
 
+  const filteredFoods = filter === 'all' ? foods : foods.filter(f => f.mealTypes.includes(filter))
+  const grouped = filter === 'all'
+    ? MEAL_TYPES.map(mt => ({
+        mealType: mt,
+        items: foods.filter(f => f.mealTypes.includes(mt)),
+      })).filter(g => g.items.length > 0)
+    : []
+
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event
     if (!over || active.id === over.id) return
 
-    const oldIndex = foods.findIndex(f => f.id === active.id)
-    const newIndex = foods.findIndex(f => f.id === over.id)
+    const items = filter === 'all' ? foods : filteredFoods
+    const oldIndex = items.findIndex(f => f.id === active.id)
+    const newIndex = items.findIndex(f => f.id === over.id)
     if (oldIndex === -1 || newIndex === -1) return
 
     const updated = [...foods]
-    const [moved] = updated.splice(oldIndex, 1)
-    updated.splice(newIndex, 0, moved)
+    const activeFood = updated.find(f => f.id === active.id)
+    const overFood = updated.find(f => f.id === over.id)
+    if (!activeFood || !overFood) return
+
+    const realOld = updated.indexOf(activeFood)
+    const realNew = updated.indexOf(overFood)
+    const [moved] = updated.splice(realOld, 1)
+    updated.splice(realNew, 0, moved)
     onReorder(updated)
   }
 
@@ -235,15 +253,68 @@ export default function FoodList({ foods, onDelete, onReorder, onEdit }: FoodLis
   return (
     <div className="food-list">
       <h2>My Foods ({foods.length})</h2>
-      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-        <SortableContext items={foods.map(f => f.id)} strategy={verticalListSortingStrategy}>
-          <div className="food-grid">
-            {foods.map(f => (
-              <SortableFoodCard key={f.id} food={f} onDelete={onDelete} onEdit={onEdit} />
-            ))}
-          </div>
-        </SortableContext>
-      </DndContext>
+      <div className="food-list-filter">
+        <div className="chip-group">
+          <button
+            type="button"
+            className={`chip ${filter === 'all' ? 'active' : ''}`}
+            onClick={() => setFilter('all')}
+          >
+            All
+          </button>
+          {MEAL_TYPES.map(m => {
+            const count = foods.filter(f => f.mealTypes.includes(m)).length
+            return (
+              <button
+                type="button"
+                key={m}
+                className={`chip ${filter === m ? 'active' : ''}`}
+                onClick={() => setFilter(m)}
+                disabled={count === 0}
+              >
+                {MEAL_EMOJIS[m]} {MEAL_LABELS[m]}
+                <span className="chip-count">{count}</span>
+              </button>
+            )
+          })}
+        </div>
+      </div>
+      {filter === 'all' ? (
+        <div className="food-grouped">
+          {grouped.map(g => (
+            <div key={g.mealType} className="food-group">
+              <div className="food-group-header">
+                <span className="food-group-emoji">{MEAL_EMOJIS[g.mealType]}</span>
+                <span className="food-group-label">{MEAL_LABELS[g.mealType]}</span>
+                <span className="food-group-count">{g.items.length}</span>
+              </div>
+              <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+                <SortableContext items={g.items.map(f => f.id)} strategy={verticalListSortingStrategy}>
+                  <div className="food-grid">
+                    {g.items.map(f => (
+                      <SortableFoodCard key={f.id} food={f} onDelete={onDelete} onEdit={onEdit} />
+                    ))}
+                  </div>
+                </SortableContext>
+              </DndContext>
+            </div>
+          ))}
+        </div>
+      ) : (
+        filteredFoods.length > 0 ? (
+          <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+            <SortableContext items={filteredFoods.map(f => f.id)} strategy={verticalListSortingStrategy}>
+              <div className="food-grid">
+                {filteredFoods.map(f => (
+                  <SortableFoodCard key={f.id} food={f} onDelete={onDelete} onEdit={onEdit} />
+                ))}
+              </div>
+            </SortableContext>
+          </DndContext>
+        ) : (
+          <p className="empty-state">No foods for this meal type.</p>
+        )
+      )}
     </div>
   )
 }

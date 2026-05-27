@@ -6,6 +6,9 @@ import {
   addFoodToRoom,
   removeFoodFromRoom,
   updateFoodToRoom,
+  addHistoryToRoom,
+  removeHistoryFromRoom,
+  clearRoomHistory,
   listenToRoom,
   getCurrentRoom,
   stopListening,
@@ -54,9 +57,11 @@ export default function App() {
 
   useEffect(() => {
     if (!isConfigured || !currentRoom) return
-    const unlisten = listenToRoom(currentRoom, (roomFoods) => {
+    const unlisten = listenToRoom(currentRoom, (roomFoods, roomHistory) => {
       setFoods(roomFoods)
       saveFoods(roomFoods)
+      setHistory(roomHistory)
+      saveHistory(roomHistory)
     })
     unlistenRef.current = unlisten
     return () => {
@@ -126,17 +131,52 @@ export default function App() {
   }, [inRoom, currentRoom])
 
   const addHistoryEntry = useCallback((entry: HistoryEntry) => {
-    setHistory(prev => {
-      const next = [...prev, entry]
-      saveHistory(next)
-      return next
-    })
-  }, [])
+    if (inRoom && currentRoom) {
+      addHistoryToRoom(currentRoom, entry).catch(() => {
+        setHistory(prev => {
+          const next = [...prev, entry]
+          saveHistory(next)
+          return next
+        })
+      })
+    } else {
+      setHistory(prev => {
+        const next = [...prev, entry]
+        saveHistory(next)
+        return next
+      })
+    }
+  }, [inRoom, currentRoom])
 
   const clearHistory = useCallback(() => {
-    setHistory([])
-    saveHistory([])
-  }, [])
+    if (inRoom && currentRoom) {
+      clearRoomHistory(currentRoom).catch(() => {
+        setHistory([])
+        saveHistory([])
+      })
+    } else {
+      setHistory([])
+      saveHistory([])
+    }
+  }, [inRoom, currentRoom])
+
+  const deleteHistoryEntry = useCallback((id: string) => {
+    if (inRoom && currentRoom) {
+      removeHistoryFromRoom(currentRoom, id).catch(() => {
+        setHistory(prev => {
+          const next = prev.filter(h => h.id !== id)
+          saveHistory(next)
+          return next
+        })
+      })
+    } else {
+      setHistory(prev => {
+        const next = prev.filter(h => h.id !== id)
+        saveHistory(next)
+        return next
+      })
+    }
+  }, [inRoom, currentRoom])
 
   function handleJoinRoom(code: string) {
     setCurrentRoom(code)
@@ -150,6 +190,7 @@ export default function App() {
     stopListening()
     setCurrentRoom(null)
     setFoods(loadFoods())
+    setHistory(loadHistory())
   }
 
   return (
@@ -199,7 +240,7 @@ export default function App() {
         {tab === 'pick' && (
           <FoodPicker foods={foods} history={history} onPick={addHistoryEntry} exclusionDays={exclusionDays} />
         )}
-        {tab === 'history' && <History history={history} onClear={clearHistory} />}
+        {tab === 'history' && <History history={history} onClear={clearHistory} onDelete={deleteHistoryEntry} />}
         {tab === 'week' && (
           <WeekPlanner foods={foods} history={history} onPick={addHistoryEntry} exclusionDays={exclusionDays} />
         )}

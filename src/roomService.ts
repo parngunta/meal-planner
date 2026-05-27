@@ -1,6 +1,6 @@
 import { db, isConfigured } from './firebase'
 import { ref, set, get, onValue, off, push, remove } from 'firebase/database'
-import type { Food } from './types'
+import type { Food, HistoryEntry } from './types'
 
 const ROOMS_KEY = 'food-selector-rooms'
 const ROOM_PREFS_KEY = 'food-selector-room-prefs'
@@ -61,6 +61,21 @@ export async function removeFoodFromRoom(roomCode: string, foodId: string): Prom
   await remove(ref(db, `${ROOMS_KEY}/${roomCode}/foods/${foodId}`))
 }
 
+export async function addHistoryToRoom(roomCode: string, entry: HistoryEntry): Promise<void> {
+  if (!db || !isConfigured) throw new Error('Firebase not configured')
+  await set(ref(db, `${ROOMS_KEY}/${roomCode}/history/${entry.id}`), entry)
+}
+
+export async function removeHistoryFromRoom(roomCode: string, entryId: string): Promise<void> {
+  if (!db || !isConfigured) throw new Error('Firebase not configured')
+  await remove(ref(db, `${ROOMS_KEY}/${roomCode}/history/${entryId}`))
+}
+
+export async function clearRoomHistory(roomCode: string): Promise<void> {
+  if (!db || !isConfigured) throw new Error('Firebase not configured')
+  await remove(ref(db, `${ROOMS_KEY}/${roomCode}/history`))
+}
+
 export async function updateFoodToRoom(roomCode: string, food: Food): Promise<void> {
   if (!db || !isConfigured) throw new Error('Firebase not configured')
   await set(ref(db, `${ROOMS_KEY}/${roomCode}/foods/${food.id}`), food)
@@ -68,26 +83,40 @@ export async function updateFoodToRoom(roomCode: string, food: Food): Promise<vo
 
 let currentListenerRoom: string | null = null
 
-export function listenToRoom(roomCode: string, onUpdate: (foods: Food[]) => void): () => void {
+export function listenToRoom(roomCode: string, onUpdate: (foods: Food[], history: HistoryEntry[]) => void): () => void {
   if (!db || !isConfigured) return () => {}
   stopListening()
-  const roomRef = ref(db, `${ROOMS_KEY}/${roomCode}/foods`)
   currentListenerRoom = roomCode
-  onValue(roomRef, (snapshot) => {
+  const foodsRef = ref(db, `${ROOMS_KEY}/${roomCode}/foods`)
+  const historyRef = ref(db, `${ROOMS_KEY}/${roomCode}/history`)
+
+  let currentFoods: Food[] = []
+  let currentHistory: HistoryEntry[] = []
+
+  function emitUpdate() {
+    onUpdate(currentFoods, currentHistory)
+  }
+
+  onValue(foodsRef, (snapshot) => {
     const data = snapshot.val()
-    if (!data) {
-      onUpdate([])
-      return
-    }
-    const foods: Food[] = Object.values(data)
-    onUpdate(foods)
+    currentFoods = data ? Object.values(data) : []
+    emitUpdate()
   })
+
+  onValue(historyRef, (snapshot) => {
+    const data = snapshot.val()
+    currentHistory = data ? Object.values(data) : []
+    emitUpdate()
+  })
+
   return () => stopListening()
 }
 
 export function stopListening(): void {
   if (!db || !currentListenerRoom) return
-  const roomRef = ref(db, `${ROOMS_KEY}/${currentListenerRoom}/foods`)
-  off(roomRef)
+  const foodsRef = ref(db, `${ROOMS_KEY}/${currentListenerRoom}/foods`)
+  const historyRef = ref(db, `${ROOMS_KEY}/${currentListenerRoom}/history`)
+  off(foodsRef)
+  off(historyRef)
   currentListenerRoom = null
 }

@@ -470,6 +470,72 @@ h2 {
 }
 
 /* ===== FOOD LIST ===== */
+.food-list-filter {
+  margin-bottom: 14px;
+}
+
+.food-list-filter .chip-group {
+  flex-wrap: wrap;
+}
+
+.chip-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  margin-left: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.08);
+  color: inherit;
+}
+
+.chip.active .chip-count {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.chip:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.food-grouped {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.food-group-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.food-group-emoji {
+  font-size: 1.1rem;
+}
+
+.food-group-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.food-group-count {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg);
+  padding: 1px 8px;
+  border-radius: 10px;
+}
+
 .food-grid {
   display: flex;
   flex-direction: column;
@@ -821,6 +887,21 @@ h2 {
 .history-date {
   color: var(--text-muted);
   font-size: 0.72rem;
+}
+
+.history-delete {
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.history-item:hover .history-delete {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .history-delete {
+    opacity: 1;
+  }
 }
 
 /* ===== WEEK PLANNER ===== */
