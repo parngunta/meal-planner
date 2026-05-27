@@ -99,7 +99,7 @@ body {
 
 .hero-content {
   position: relative;
-  padding: 42px 20px 18px;
+  padding: 36px 20px 18px;
   width: 100%;
   background: linear-gradient(0deg, rgba(240,240,200,0.85) 0%, rgba(240,240,200,0.3) 60%, transparent 100%);
 }
