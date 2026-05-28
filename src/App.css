@@ -86,7 +86,7 @@ body {
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: 160px;
+  min-height: 200px;
   display: flex;
   align-items: center;
   flex-shrink: 0;
