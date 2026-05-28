@@ -54,7 +54,7 @@
   --shadow: 0 4px 16px rgba(58, 50, 32, 0.07);
   --shadow-md: 0 6px 24px rgba(58, 50, 32, 0.08);
   --shadow-lg: 0 12px 40px rgba(58, 50, 32, 0.1);
-  --hero-bg-image: url('/foodbanner4.png');
+  --hero-bg-image: url('/foodbanner-mobile.png');
 }
 
 html {
@@ -1049,6 +1049,9 @@ h2 {
 
 /* ===== RESPONSIVE ===== */
 @media (min-width: 768px) {
+  :root {
+    --hero-bg-image: url('/foodbanner4.png');
+  }
   .app {
     max-width: 720px;
     padding: 0 16px;
