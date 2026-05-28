@@ -86,9 +86,9 @@ body {
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: 200px;
+  min-height: unset;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   flex-shrink: 0;
   margin: 0;
   margin-top: -24px;
@@ -102,7 +102,7 @@ body {
 
 .hero-content {
   position: relative;
-  padding: 40px 24px 20px;
+  padding: 12px 24px 16px;
   width: 100%;
   background: linear-gradient(0deg, rgba(245,237,227,0.2) 0%, rgba(245,237,227,0.05) 50%, transparent 100%);
 }
@@ -142,7 +142,7 @@ body {
   justify-content: flex-end;
   gap: 10px;
   flex-wrap: nowrap;
-  padding-top: 28px;
+  padding-top: 0;
 }
 
 .exclusion-control {
@@ -1058,10 +1058,15 @@ h2 {
     border-radius: var(--radius-xl);
     margin-top: 24px;
     min-height: 240px;
+    align-items: flex-end;
   }
 
   .hero-content {
     padding: 40px 36px 32px;
+  }
+
+  .hero-actions {
+    padding-top: 28px;
   }
 
   .hero-title {
