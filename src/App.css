@@ -97,7 +97,7 @@ body {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: var(--bg) var(--hero-bg-image) center/contain no-repeat;
+  background: var(--bg) var(--hero-bg-image) center/cover no-repeat;
 }
 
 .hero-content {
