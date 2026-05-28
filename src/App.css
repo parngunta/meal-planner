@@ -1845,18 +1845,18 @@ h2 {
 .btn-copy {
   padding: 6px 14px;
   background: white;
-  border: 2px solid var(--coral-100);
+  border: 2px solid #AED6F1;
   border-radius: var(--radius-pill);
   font-size: 0.75rem;
   font-weight: 700;
   font-family: inherit;
-  color: var(--accent);
+  color: #2980B9;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .btn-copy:hover {
-  background: var(--accent-light);
+  background: #EBF5FB;
 }
 .room-hint {
   font-size: 0.75rem;
