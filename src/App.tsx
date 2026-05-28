@@ -242,7 +242,7 @@ export default function App() {
         {tab === 'add' && <FoodForm onAdd={addFood} />}
         {tab === 'foods' && <FoodList foods={foods} onDelete={deleteFood} onReorder={reorderFoods} onEdit={updateFood} />}
         {tab === 'pick' && (
-          <FoodPicker foods={foods} history={history} onPick={addHistoryEntry} exclusionDays={exclusionDays} />
+          <FoodPicker foods={foods} history={history} onPick={addHistoryEntry} exclusionDays={exclusionDays} roomId={currentRoom} onViewHistory={() => setTab('history')} />
         )}
         {tab === 'history' && <History history={history} onClear={clearHistory} onDelete={deleteHistoryEntry} />}
         {tab === 'week' && (
