@@ -88,7 +88,7 @@ body {
   overflow: hidden;
   min-height: 200px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   flex-shrink: 0;
   margin: 0;
   margin-top: -24px;
@@ -102,7 +102,7 @@ body {
 
 .hero-content {
   position: relative;
-  padding: 16px 24px 16px;
+  padding: 0 16px 12px;
   width: 100%;
   background: linear-gradient(0deg, rgba(245,237,227,0.2) 0%, rgba(245,237,227,0.05) 50%, transparent 100%);
 }
@@ -143,24 +143,28 @@ body {
   gap: 10px;
   flex-wrap: nowrap;
   padding-top: 0;
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
 }
 
 .exclusion-control {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
-  padding: 5px 9px;
+  gap: 4px;
+  padding: 3px 10px;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-sm);
   border: 1px solid rgba(255, 255, 255, 0.6);
+  font-size: 0.68rem;
 }
 
 .exclusion-control label {
-  font-size: 0.76rem;
-  color: var(--text);
+  font-size: 0.68rem;
+  color: var(--text-muted);
   display: flex;
   align-items: center;
   gap: 4px;
@@ -168,7 +172,7 @@ body {
 }
 
 .exclusion-control select {
-  font-size: 0.76rem;
+  font-size: 0.68rem;
   padding: 2px 6px 2px 4px;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -183,21 +187,21 @@ body {
 
 .exclusion-control svg {
   flex-shrink: 0;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
 }
 
 .food-count-pill {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 5px 14px;
+  gap: 4px;
+  padding: 4px 10px;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-sm);
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   color: var(--text-muted);
   font-weight: 600;
   border: 1px solid rgba(255, 255, 255, 0.6);
@@ -206,6 +210,8 @@ body {
 .food-count-pill svg {
   color: var(--brown-400);
   flex-shrink: 0;
+  width: 10px;
+  height: 10px;
 }
 
 .food-count-text {
@@ -1070,6 +1076,7 @@ h2 {
 
   .hero-actions {
     padding-top: 28px;
+    position: static;
   }
 
   .hero-title {
