@@ -19,8 +19,13 @@ export default function ConfirmModal({ open, food, mealType, roomId, onConfirm, 
   useEffect(() => {
     if (open) {
       setSaving(false)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      document.body.classList.add('modal-open')
       const t = setTimeout(() => confirmBtnRef.current?.focus(), 350)
-      return () => clearTimeout(t)
+      return () => {
+        clearTimeout(t)
+        document.body.classList.remove('modal-open')
+      }
     }
   }, [open])
 

@@ -734,13 +734,17 @@ h2 {
 .meal-hero-card {
   background: linear-gradient(135deg, var(--cream-50) 0%, white 100%);
   border-radius: var(--radius-xl);
-  padding: 32px 20px 24px;
+  padding: 16px 20px;
   margin-bottom: 20px;
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--cream-200);
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   position: relative;
   overflow: hidden;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .meal-hero-card.has-result {
@@ -755,23 +759,23 @@ h2 {
 .meal-hero-illustration {
   position: relative;
   display: inline-block;
-  margin-bottom: 16px;
+  margin-bottom: 6px;
 }
 
 .meal-hero-emoji {
-  font-size: 4rem;
+  font-size: 2rem;
   display: block;
   animation: heroEmojiFloat 3s ease-in-out infinite;
 }
 
 @keyframes heroEmojiFloat {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  50% { transform: translateY(-4px); }
 }
 
 .meal-hero-ring {
   position: absolute;
-  inset: -12px;
+  inset: -8px;
   border-radius: 50%;
   border: 2px dashed var(--cream-300);
   opacity: 0.5;
@@ -784,15 +788,15 @@ h2 {
 }
 
 .meal-hero-title {
-  font-size: 1.35rem;
+  font-size: 1rem;
   font-weight: 900;
   color: var(--text-strong);
   letter-spacing: -0.02em;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .meal-hero-sub {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
   font-weight: 500;
 }
@@ -963,7 +967,7 @@ h2 {
 /* ===== PICK RESULT ===== */
 .pick-result {
   text-align: center;
-  padding: 8px 12px 16px;
+  width: 100%;
   animation: pickPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -973,18 +977,18 @@ h2 {
 }
 
 .pick-result-emoji {
-  font-size: 3.5rem;
+  font-size: 1.8rem;
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
 }
 
 .pick-result-name {
-  font-size: 1.7rem;
+  font-size: 1rem;
   font-weight: 900;
   display: block;
   color: var(--text-strong);
   letter-spacing: -0.02em;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
   line-height: 1.2;
 }
 
@@ -993,9 +997,8 @@ h2 {
   gap: 8px;
   justify-content: center;
   align-items: center;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
-  margin-bottom: 4px;
 }
 
 .pick-result-cuisine {
@@ -1924,5 +1927,9 @@ h2 {
 
   .app {
     padding-bottom: calc(72px + env(safe-area-inset-bottom));
+  }
+
+  body.modal-open .bottom-nav {
+    display: none !important;
   }
 }

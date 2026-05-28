@@ -15,11 +15,13 @@ export default function SuccessState({ food, mealType, onViewHistory, onDone }: 
   const [checkScale, setCheckScale] = useState(false)
 
   useEffect(() => {
+    document.body.classList.add('modal-open')
     requestAnimationFrame(() => {
       setVisible(true)
       setTimeout(() => setCheckScale(true), 150)
       setTimeout(() => setShowConfetti(true), 300)
     })
+    return () => { document.body.classList.remove('modal-open') }
   }, [])
 
   return (
