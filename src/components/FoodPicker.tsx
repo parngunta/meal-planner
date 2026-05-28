@@ -105,7 +105,12 @@ export default function FoodPicker({ foods, history, onPick, exclusionDays }: Fo
           </div>
         )}
 
-        <p className="eligible-count">{eligible.length} meals eligible · skip {exclusionDays}d</p>
+        <p className="eligible-row">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
+          </svg>
+          {eligible.length} meals eligible · skip {exclusionDays}d
+        </p>
       </div>
     </div>
   )
