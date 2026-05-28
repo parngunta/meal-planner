@@ -86,7 +86,6 @@ export default function FoodPicker({ foods, history, onPick, exclusionDays, room
           <div className="meal-hero-empty">
             <div className="meal-hero-illustration">
               <span className="meal-hero-emoji">{MEAL_EMOJIS[selectedMeal]}</span>
-              <div className="meal-hero-ring" />
             </div>
             <h3 className="meal-hero-title">What's for {MEAL_LABELS[selectedMeal]}?</h3>
             <p className="meal-hero-sub">Tap the button to pick a meal</p>
@@ -97,17 +96,14 @@ export default function FoodPicker({ foods, history, onPick, exclusionDays, room
           <div className="pick-result">
             <span className="pick-result-emoji">{MEAL_EMOJIS[selectedMeal]}</span>
             <span className="pick-result-name">{result.name}</span>
-            <div className="pick-result-details">
-              {result.cuisine && <span className="pick-result-cuisine">{result.cuisine}</span>}
-              <span className="pick-result-divider">·</span>
-              <span className="stars-row">
-                {[1, 2, 3, 4, 5].map(i => (
-                  <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill={i <= result.rating ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                  </svg>
-                ))}
-              </span>
-            </div>
+            <span className="stars-row pick-result-stars">
+              {[1, 2, 3, 4, 5].map(i => (
+                <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill={i <= result.rating ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg>
+              ))}
+            </span>
+            {result.cuisine && <span className="pick-result-cuisine">{result.cuisine}</span>}
           </div>
         )}
       </div>
