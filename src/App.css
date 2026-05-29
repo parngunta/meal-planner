@@ -551,9 +551,10 @@ h2 {
 }
 
 .food-list > h2 {
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--text-secondary);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.03em;
 }
 
 .food-group-emoji {
@@ -561,9 +562,10 @@ h2 {
 }
 
 .food-group-label {
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.03em;
 }
 
 .food-group-count {
