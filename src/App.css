@@ -16,7 +16,7 @@
   --accent: #E8683A;
   --accent-hover: #D45A2E;
   --accent-light: rgba(232, 104, 58, 0.10);
-  --accent-gradient: linear-gradient(135deg, #E8683A 0%, #FF8F5C 100%);
+  --accent-gradient: linear-gradient(135deg, #D95838 0%, #FF8F5C 100%);
   --accent-glow: 0 4px 24px rgba(232, 104, 58, 0.35);
   --green-gradient: linear-gradient(135deg, #34C759 0%, #5BD679 100%);
   --green-glow: 0 4px 20px rgba(52, 199, 89, 0.3);
@@ -635,7 +635,7 @@ h2 {
   padding: 16px 20px;
   border: none;
   border-radius: var(--radius-lg);
-  background: var(--card);
+  background: #FFF8F0;
   box-shadow: var(--shadow-xs), inset 0 0 0 0.5px var(--separator);
   transition: transform 0.2s var(--ease-out), box-shadow 0.2s ease;
 }
@@ -1470,7 +1470,7 @@ h2 {
   display: flex;
   gap: 12px;
   padding: 14px 16px;
-  background: var(--card);
+  background: #FFF8F0;
   border-radius: var(--radius);
   font-size: 0.82rem;
   align-items: center;
@@ -1537,7 +1537,7 @@ h2 {
 
 .day-column {
   padding: 18px 20px;
-  background: var(--card);
+  background: #FFF8F0;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xs), inset 0 0 0 0.5px var(--separator);
 }
