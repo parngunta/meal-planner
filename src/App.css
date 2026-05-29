@@ -1855,23 +1855,27 @@ h2 {
 
 .btn-share {
   padding: 6px;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: none;
   border-radius: 9999px;
   font-size: 0.72rem;
   font-weight: 700;
   font-family: inherit;
-  color: var(--accent);
+  color: #5B93DB;
   cursor: pointer;
-  transition: transform 0.2s var(--spring), background 0.2s ease;
+  transition: all 0.2s var(--ease-out);
   display: flex;
   align-items: center;
   gap: 5px;
   white-space: nowrap;
+  box-shadow: var(--btn-shadow-secondary), inset 0 0.5px 0 rgba(255, 255, 255, 0.5);
 }
 
 .btn-share:hover {
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--btn-shadow-secondary-hover), inset 0 0.5px 0 rgba(255, 255, 255, 0.6);
 }
 
 .btn-share:active {
