@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { isConfigured } from '../firebase'
-import { createRoom, joinRoom, leaveRoom } from '../roomService'
+import { createRoom, joinRoom, leaveRoom, getPinnedRooms, addPinnedRoom, removePinnedRoom } from '../roomService'
 
 interface RoomManagerProps {
   currentRoom: string | null
@@ -16,9 +16,25 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
   const [copied, setCopied] = useState(false)
   const [shared, setShared] = useState(false)
   const [open, setOpen] = useState(false)
+  const [pinnedRooms, setPinnedRooms] = useState<string[]>(() => getPinnedRooms())
 
   if (!isConfigured) {
     return null
+  }
+
+  const isPinned = currentRoom ? pinnedRooms.includes(currentRoom) : false
+
+  function handleTogglePin() {
+    if (!currentRoom) return
+    if (isPinned) {
+      setPinnedRooms(removePinnedRoom(currentRoom))
+    } else {
+      setPinnedRooms(addPinnedRoom(currentRoom))
+    }
+  }
+
+  function handleUnpin(code: string) {
+    setPinnedRooms(removePinnedRoom(code))
   }
 
   async function handleCreate() {
@@ -113,6 +129,17 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
                   <span className="room-code">{currentRoom}</span>
                 </div>
                 <div className="room-status-actions">
+                  <button
+                    className={`btn-pin${isPinned ? ' btn-pin-active' : ''}`}
+                    onClick={handleTogglePin}
+                    title={isPinned ? 'Unpin room' : 'Pin room'}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill={isPinned ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 2L12 15" />
+                      <path d="M20 10L4 22l2.5-7.5L20 10z" />
+                    </svg>
+                    {isPinned ? 'Unpin' : 'Pin'}
+                  </button>
                   <button className="btn-copy" onClick={handleCopy}>
                     {copied ? '✓ Copied' : 'Copy Code'}
                   </button>
@@ -124,12 +151,44 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
                   </button>
                 </div>
               </div>
-              <p className="room-hint">Share this code or send a link to friends to sync</p>
+              {pinnedRooms.length > 0 && (
+                <div className="pinned-rooms">
+                  <span className="pinned-label">Pinned Rooms</span>
+                  <div className="pinned-list">
+                    {pinnedRooms.map(code => (
+                      <div key={code} className={`pinned-item${code === currentRoom ? ' pinned-item-active' : ''}`}>
+                        <span className="pinned-code" onClick={() => code !== currentRoom && onJoin(code)}>{code}</span>
+                        <button className="btn-unpin" onClick={() => handleUnpin(code)} title="Unpin room">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+                          </svg>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
               <button className="btn-leave" onClick={handleLeave}>Leave Room</button>
             </>
           ) : (
             <>
-              <p className="room-intro">Sync your food list with friends in real-time</p>
+              {pinnedRooms.length > 0 && (
+                <div className="pinned-rooms">
+                  <span className="pinned-label">Pinned Rooms</span>
+                  <div className="pinned-list">
+                    {pinnedRooms.map(code => (
+                      <div key={code} className="pinned-item">
+                        <span className="pinned-code" onClick={() => onJoin(code)}>{code}</span>
+                        <button className="btn-unpin" onClick={() => handleUnpin(code)} title="Unpin room">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+                          </svg>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
               <div className="room-actions">
                 <button className="btn-room" onClick={handleCreate} disabled={creating}>
                   {creating ? 'Creating...' : 'Create Room'}

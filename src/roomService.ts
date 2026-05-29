@@ -4,6 +4,8 @@ import type { Food, HistoryEntry } from './types'
 
 const ROOMS_KEY = 'food-selector-rooms'
 const ROOM_PREFS_KEY = 'food-selector-room-prefs'
+const PINNED_ROOMS_KEY = 'food-selector-pinned-rooms'
+const MAX_PINNED_ROOMS = 5
 
 function generateRoomCode(): string {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
@@ -49,6 +51,34 @@ export async function leaveRoom(): Promise<void> {
 
 export function getCurrentRoom(): string | null {
   return localStorage.getItem(ROOM_PREFS_KEY)
+}
+
+export function getPinnedRooms(): string[] {
+  try {
+    return JSON.parse(localStorage.getItem(PINNED_ROOMS_KEY) || '[]')
+  } catch {
+    return []
+  }
+}
+
+export function addPinnedRoom(code: string): string[] {
+  const pinned = getPinnedRooms()
+  const upper = code.toUpperCase().trim()
+  if (pinned.includes(upper)) return pinned
+  const updated = [upper, ...pinned].slice(0, MAX_PINNED_ROOMS)
+  localStorage.setItem(PINNED_ROOMS_KEY, JSON.stringify(updated))
+  return updated
+}
+
+export function removePinnedRoom(code: string): string[] {
+  const upper = code.toUpperCase().trim()
+  const updated = getPinnedRooms().filter(r => r !== upper)
+  localStorage.setItem(PINNED_ROOMS_KEY, JSON.stringify(updated))
+  return updated
+}
+
+export function isRoomPinned(code: string): boolean {
+  return getPinnedRooms().includes(code.toUpperCase().trim())
 }
 
 export async function addFoodToRoom(roomCode: string, food: Food): Promise<void> {
