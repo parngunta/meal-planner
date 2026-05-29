@@ -1813,6 +1813,13 @@ h2 {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.room-status-actions {
+  display: flex;
+  gap: 6px;
 }
 
 .room-info {
@@ -1857,6 +1864,32 @@ h2 {
 
 .btn-copy:hover {
   background: #EBF5FB;
+}
+
+.btn-share {
+  padding: 6px 14px;
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: inherit;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(217, 68, 50, 0.25);
+}
+
+.btn-share:hover {
+  box-shadow: 0 4px 16px rgba(217, 68, 50, 0.35);
+}
+
+.btn-share:active {
+  transform: scale(0.97);
 }
 .room-hint {
   font-size: 0.75rem;

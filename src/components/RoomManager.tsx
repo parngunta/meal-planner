@@ -14,6 +14,7 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
   const [joining, setJoining] = useState(false)
   const [error, setError] = useState('')
   const [copied, setCopied] = useState(false)
+  const [shared, setShared] = useState(false)
   const [open, setOpen] = useState(false)
 
   if (!isConfigured) {
@@ -60,6 +61,29 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
     })
   }
 
+  function getShareUrl() {
+    const url = new URL(window.location.href)
+    url.searchParams.set('room', currentRoom!)
+    return url.toString()
+  }
+
+  function handleShareLink() {
+    if (!currentRoom) return
+    const shareUrl = getShareUrl()
+    if (navigator.share) {
+      navigator.share({
+        title: 'Join my meal plan room',
+        text: `Join my meal plan room! Code: ${currentRoom}`,
+        url: shareUrl,
+      }).catch(() => {})
+    } else {
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        setShared(true)
+        setTimeout(() => setShared(false), 2000)
+      })
+    }
+  }
+
   async function handleLeave() {
     await leaveRoom()
     onLeave()
@@ -88,11 +112,16 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
                   <span className="room-label">Room</span>
                   <span className="room-code">{currentRoom}</span>
                 </div>
-                <button className="btn-copy" onClick={handleCopy}>
-                  {copied ? '✓ Copied' : 'Copy Code'}
-                </button>
+                <div className="room-status-actions">
+                  <button className="btn-copy" onClick={handleCopy}>
+                    {copied ? '✓ Copied' : 'Copy Code'}
+                  </button>
+                  <button className="btn-share" onClick={handleShareLink}>
+                    {shared ? '✓ Link Copied' : 'Share Link'}
+                  </button>
+                </div>
               </div>
-              <p className="room-hint">Share this code with friends to sync</p>
+              <p className="room-hint">Share this code or send a link to friends to sync</p>
               <button className="btn-leave" onClick={handleLeave}>Leave Room</button>
             </>
           ) : (

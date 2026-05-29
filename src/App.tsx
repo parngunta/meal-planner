@@ -46,12 +46,22 @@ function TabIcon({ name }: { name: string }) {
   ) : null
 }
 
+function getRoomFromUrl(): string | null {
+  const params = new URLSearchParams(window.location.search)
+  return params.get('room')?.toUpperCase().trim() || null
+}
+
 export default function App() {
   const [foods, setFoods] = useState<Food[]>(loadFoods)
   const [history, setHistory] = useState<HistoryEntry[]>(loadHistory)
   const [tab, setTab] = useState<Tab>('pick')
   const [exclusionDays, setExclusionDays] = useState(0)
-  const [currentRoom, setCurrentRoom] = useState<string | null>(isConfigured ? getCurrentRoom() : null)
+  const [currentRoom, setCurrentRoom] = useState<string | null>(() => {
+    if (!isConfigured) return null
+    const urlRoom = getRoomFromUrl()
+    if (urlRoom) return urlRoom
+    return getCurrentRoom()
+  })
   const unlistenRef = useRef<(() => void) | null>(null)
   const inRoom = isConfigured && currentRoom !== null
 
