@@ -550,6 +550,12 @@ h2 {
   margin-bottom: 12px;
 }
 
+.food-list > h2 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
 .food-group-emoji {
   font-size: 1.1rem;
 }
@@ -557,7 +563,7 @@ h2 {
 .food-group-label {
   font-size: 0.88rem;
   font-weight: 700;
-  color: var(--text);
+  color: var(--text-secondary);
 }
 
 .food-group-count {
