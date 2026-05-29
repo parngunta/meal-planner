@@ -1854,30 +1854,28 @@ h2 {
 }
 
 .btn-share {
-  padding: 8px 16px;
-  background: var(--accent-gradient);
+  padding: 6px;
+  background: transparent;
   border: none;
   border-radius: 9999px;
   font-size: 0.72rem;
   font-weight: 700;
   font-family: inherit;
-  color: white;
+  color: var(--accent);
   cursor: pointer;
-  transition: transform 0.2s var(--spring), box-shadow 0.2s ease;
+  transition: transform 0.2s var(--spring), background 0.2s ease;
   display: flex;
   align-items: center;
   gap: 5px;
   white-space: nowrap;
-  box-shadow: var(--btn-shadow-primary), var(--btn-inner-glow);
 }
 
 .btn-share:hover {
-  box-shadow: var(--btn-shadow-primary-hover), var(--btn-inner-glow);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 .btn-share:active {
-  transform: scale(0.97);
-  box-shadow: var(--btn-shadow-primary-active), var(--btn-inner-glow);
+  transform: scale(0.95);
 }
 
 .room-hint {

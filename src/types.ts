@@ -11,7 +11,7 @@ export const MEAL_LABELS: Record<MealType, string> = {
 }
 
 export const MEAL_EMOJIS: Record<MealType, string> = {
-  breakfast: '🌅',
+  breakfast: '🍞',
   lunch: '☀️',
   dinner: '🌙',
   snack: '🍪',
