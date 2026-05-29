@@ -32,18 +32,21 @@ const TABS: { key: Tab; label: string; icon: string }[] = [
 ]
 
 function TabIcon({ name }: { name: string }) {
-  const m: Record<string, string> = {
-    shuffle: 'M16 3h5v5M4 20l17-17M16 21h5v-5M15 15l6 6M4 4l5 5',
-    plus: 'M12 5v14M5 12h14',
-    list: 'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01',
-    calendar: 'M3 4h18v18H3zM16 2v4M8 2v4M3 10h18',
-    clock: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM12 6v6l4 2',
+  const icons: Record<string, { d: string; d2?: string; fill?: boolean }> = {
+    shuffle: { d: 'M16 3h5v5M4 20l17-17M16 21h5v-5M15 15l6 6M4 4l5 5' },
+    plus: { d: 'M12 5v14M5 12h14' },
+    list: { d: 'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01' },
+    calendar: { d: 'M3 4h18v18H3z', d2: 'M16 2v4M8 2v4M3 10h18' },
+    clock: { d: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z', d2: 'M12 6v6l4 2' },
   }
-  return m[name] ? (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d={m[name]} />
+  const icon = icons[name]
+  if (!icon) return null
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d={icon.d} />
+      {icon.d2 && <path d={icon.d2} />}
     </svg>
-  ) : null
+  )
 }
 
 function getRoomFromUrl(): string | null {
