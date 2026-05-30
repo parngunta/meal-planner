@@ -2174,7 +2174,7 @@ html.dark .hero-bg {
 }
 
 html.dark .hero-content {
-  background: linear-gradient(0deg, rgba(10,13,20,0.7) 0%, rgba(10,13,20,0.3) 50%, transparent 100%);
+  background: linear-gradient(0deg, rgba(10,13,20,0.5) 0%, rgba(10,13,20,0.2) 50%, transparent 100%);
 }
 
 /* Dark hero pills */
