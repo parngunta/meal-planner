@@ -1673,7 +1673,7 @@ h2 {
   border: 1px solid transparent;
   overflow: hidden;
   box-shadow: var(--shadow-sm), inset 0 0 0 0.5px var(--separator);
-  transition: all 0.3s var(--ease-out);
+  transition: background-color 0.3s var(--ease-out), border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
 }
 
 .room-toggle {
@@ -1690,7 +1690,7 @@ h2 {
   color: var(--text-secondary);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  transition: all 0.25s var(--ease-out);
+  transition: background-color 0.25s var(--ease-out), color 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
 }
 
 .room-toggle:hover {
@@ -1704,6 +1704,7 @@ h2 {
 .room-toggle svg {
   color: var(--text-tertiary);
   transition: color 0.25s var(--ease-out);
+  flex-shrink: 0;
 }
 
 .room-active .room-toggle svg {
@@ -2085,7 +2086,7 @@ h2 {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-radius: 9999px;
-  transition: all 0.2s var(--ease-out);
+  transition: background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
 }
 
 .pinned-item:hover {
