@@ -19,6 +19,7 @@ import FoodPicker from './components/FoodPicker'
 import History from './components/History'
 import WeekPlanner from './components/WeekPlanner'
 import RoomManager from './components/RoomManager'
+import ThemeToggle from './components/ThemeToggle'
 import './App.css'
 
 type Tab = 'pick' | 'add' | 'foods' | 'history' | 'week'
@@ -54,11 +55,28 @@ function getRoomFromUrl(): string | null {
   return params.get('room')?.toUpperCase().trim() || null
 }
 
+function useTheme() {
+  const [dark, setDark] = useState(() => {
+    const stored = localStorage.getItem('theme')
+    if (stored) return stored === 'dark'
+    return window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false
+  })
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', dark)
+    localStorage.setItem('theme', dark ? 'dark' : 'light')
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#0A0D14' : '#F2F2F7')
+  }, [dark])
+
+  return { dark, toggle: () => setDark(d => !d) }
+}
+
 export default function App() {
   const [foods, setFoods] = useState<Food[]>(loadFoods)
   const [history, setHistory] = useState<HistoryEntry[]>(loadHistory)
   const [tab, setTab] = useState<Tab>('pick')
   const [exclusionDays, setExclusionDays] = useState(0)
+  const { dark, toggle: toggleTheme } = useTheme()
   const [currentRoom, setCurrentRoom] = useState<string | null>(() => {
     if (!isConfigured) return null
     const urlRoom = getRoomFromUrl()
@@ -213,6 +231,7 @@ export default function App() {
         <div className="hero-content">
 
           <div className="hero-actions">
+            <ThemeToggle dark={dark} onToggle={toggleTheme} />
             <div className="exclusion-control">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />

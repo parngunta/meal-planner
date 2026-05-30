@@ -246,6 +246,7 @@ body {
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(24px) saturate(200%);
   -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid transparent;
   border-radius: 28px;
   padding: 4px;
   padding-bottom: max(4px, calc(env(safe-area-inset-bottom) - 8px));
@@ -260,7 +261,7 @@ body {
   align-items: center;
   gap: 1px;
   padding: 8px 4px;
-  border: none;
+  border: 1px solid transparent;
   background: transparent;
   border-radius: 20px;
   font-size: 0.6rem;
@@ -316,7 +317,7 @@ h2 {
   display: block;
   width: 100%;
   padding: 16px 18px;
-  border: none;
+  border: 1px solid transparent;
   border-radius: var(--radius-lg);
   font-size: 1rem;
   font-weight: 600;
@@ -341,7 +342,7 @@ h2 {
   display: block;
   width: 100%;
   padding: 14px 16px;
-  border: none;
+  border: 1px solid transparent;
   border-radius: var(--radius);
   font-size: 0.88rem;
   font-family: inherit;
@@ -382,7 +383,7 @@ h2 {
   display: block;
   width: 100%;
   padding: 14px 16px;
-  border: none;
+  border: 1px solid transparent;
   border-radius: var(--radius);
   font-size: 0.88rem;
   font-family: inherit;
@@ -405,7 +406,7 @@ h2 {
   height: 54px;
   background: var(--accent-gradient);
   color: white;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 9999px;
   font-size: 1rem;
   font-weight: 700;
@@ -477,7 +478,7 @@ h2 {
 
 .chip {
   padding: 10px 18px;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(12px);
@@ -641,7 +642,7 @@ h2 {
 
 .food-card {
   padding: 16px 20px;
-  border: none;
+  border: 1px solid transparent;
   border-radius: var(--radius-lg);
   background: #FFF8F0;
   box-shadow: var(--shadow-xs), inset 0 0 0 0.5px var(--separator);
@@ -707,6 +708,7 @@ h2 {
 /* ===== FOOD PICKER ===== */
 .picker-card {
   background: var(--card);
+  border: 1px solid transparent;
   border-radius: var(--radius-xl);
   padding: 24px;
   margin-bottom: 24px;
@@ -774,6 +776,7 @@ h2 {
   color: var(--text-secondary);
   font-weight: 600;
   background: var(--fill);
+  border: 1px solid transparent;
   padding: 6px 16px;
   border-radius: var(--radius-pill);
 }
@@ -793,7 +796,7 @@ h2 {
   height: 54px;
   background: var(--accent-gradient);
   color: white;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 9999px;
   font-size: 1.05rem;
   font-weight: 700;
@@ -837,7 +840,7 @@ h2 {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: var(--text);
-  border: none;
+  border: 1px solid transparent;
   border-radius: 9999px;
   font-size: 0.88rem;
   font-weight: 600;
@@ -873,7 +876,7 @@ h2 {
   height: 54px;
   background: var(--accent-gradient);
   color: white;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 9999px;
   font-size: 0.95rem;
   font-weight: 700;
@@ -972,6 +975,8 @@ h2 {
   max-height: 90vh;
   overflow-y: auto;
   background: var(--card);
+  border: 1px solid transparent;
+  border-bottom: none;
   border-radius: 20px 20px 0 0;
   padding: 8px 24px 36px;
   animation: sheetSlideUp 0.35s var(--ease-out);
@@ -1036,6 +1041,7 @@ h2 {
   align-items: center;
   gap: 16px;
   background: var(--fill);
+  border: 1px solid transparent;
   border-radius: var(--radius-lg);
   padding: 16px 18px;
   margin-bottom: 18px;
@@ -1073,6 +1079,7 @@ h2 {
   display: inline-flex;
   align-items: center;
   background: var(--accent-gradient);
+  border: 1px solid transparent;
   color: white;
   font-size: 0.68rem;
   font-weight: 700;
@@ -1097,6 +1104,7 @@ h2 {
 
 .modal-details {
   background: var(--fill);
+  border: 1px solid transparent;
   border-radius: var(--radius);
   padding: 14px 16px;
   margin-bottom: 14px;
@@ -1149,7 +1157,7 @@ h2 {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: var(--text-secondary);
-  border: none;
+  border: 1px solid transparent;
   border-radius: 9999px;
   font-size: 0.92rem;
   font-weight: 600;
@@ -1181,7 +1189,7 @@ h2 {
   height: 50px;
   background: var(--accent-gradient);
   color: white;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 9999px;
   font-size: 0.95rem;
   font-weight: 700;
@@ -1313,6 +1321,7 @@ h2 {
   align-items: center;
   gap: 14px;
   background: var(--fill);
+  border: 1px solid transparent;
   border-radius: var(--radius-lg);
   padding: 14px 16px;
   margin-bottom: 24px;
@@ -1360,7 +1369,7 @@ h2 {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: var(--text);
-  border: none;
+  border: 1px solid transparent;
   border-radius: 9999px;
   font-size: 0.88rem;
   font-weight: 600;
@@ -1392,7 +1401,7 @@ h2 {
   height: 50px;
   background: var(--accent-gradient);
   color: white;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 9999px;
   font-size: 0.95rem;
   font-weight: 700;
@@ -1453,7 +1462,7 @@ h2 {
   padding: 8px 20px;
   background: rgba(255, 59, 48, 0.08);
   color: #FF3B30;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 9999px;
   font-size: 0.78rem;
   font-weight: 600;
@@ -1479,6 +1488,7 @@ h2 {
   gap: 12px;
   padding: 14px 16px;
   background: #FFF8F0;
+  border: 1px solid transparent;
   border-radius: var(--radius);
   font-size: 0.82rem;
   align-items: center;
@@ -1546,6 +1556,7 @@ h2 {
 .day-column {
   padding: 18px 20px;
   background: #FFF8F0;
+  border: 1px solid transparent;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xs), inset 0 0 0 0.5px var(--separator);
 }
@@ -1659,7 +1670,7 @@ h2 {
   padding: 0;
   background: var(--card);
   border-radius: var(--radius-xl);
-  border: none;
+  border: 1px solid transparent;
   overflow: hidden;
   box-shadow: var(--shadow-sm), inset 0 0 0 0.5px var(--separator);
   transition: all 0.3s var(--ease-out);
@@ -1671,7 +1682,7 @@ h2 {
   gap: 10px;
   width: 100%;
   padding: 16px 20px;
-  border: none;
+  border: 1px solid transparent;
   background: transparent;
   font-size: 0.88rem;
   font-weight: 700;
@@ -1734,7 +1745,7 @@ h2 {
 .room-input {
   flex: 1;
   padding: 14px 16px;
-  border: none;
+  border: 1px solid transparent;
   border-radius: var(--radius);
   font-size: 0.88rem;
   font-family: monospace;
@@ -1764,7 +1775,7 @@ h2 {
   height: 48px;
   background: var(--accent-gradient);
   color: white;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 9999px;
   font-size: 0.85rem;
   font-weight: 700;
@@ -1845,7 +1856,7 @@ h2 {
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: none;
+  border: 1px solid transparent;
   border-radius: 9999px;
   font-size: 0.72rem;
   font-weight: 700;
@@ -1866,7 +1877,7 @@ h2 {
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: none;
+  border: 1px solid transparent;
   border-radius: 9999px;
   font-size: 0.72rem;
   font-weight: 700;
@@ -1904,7 +1915,7 @@ h2 {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: var(--text-secondary);
-  border: none;
+  border: 1px solid transparent;
   border-radius: 9999px;
   font-size: 0.78rem;
   font-weight: 600;
@@ -1933,7 +1944,7 @@ h2 {
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: none;
+  border: 1px solid transparent;
   border-radius: 9999px;
   font-size: 0.72rem;
   font-weight: 700;
@@ -2076,5 +2087,860 @@ h2 {
 
   body.modal-open .bottom-nav {
     display: none !important;
+  }
+}
+
+/* ===== THEME TOGGLE ===== */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-xs);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.25s var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.theme-toggle svg {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s var(--spring);
+}
+
+.theme-toggle:active svg {
+  transform: rotate(30deg);
+}
+
+/* ===== DARK MODE ===== */
+html.dark {
+  color-scheme: dark;
+
+  --bg: #0A0D14;
+  --card: #111827;
+  --card-elevated: #131A24;
+  --text: #FFFFFF;
+  --text-secondary: rgba(255,255,255,0.7);
+  --text-tertiary: rgba(255,255,255,0.5);
+  --accent: #FF6B3D;
+  --accent-hover: #FF8A5C;
+  --accent-light: rgba(255, 107, 61, 0.12);
+  --accent-gradient: linear-gradient(135deg, #FF6B3D 0%, #FF8A5C 100%);
+  --accent-glow: 0 4px 24px rgba(255, 107, 61, 0.35);
+  --green-gradient: linear-gradient(135deg, #34C759 0%, #5BD679 100%);
+  --green-glow: 0 4px 20px rgba(52, 199, 89, 0.3);
+  --blue: #0A84FF;
+  --blue-light: rgba(10, 132, 255, 0.12);
+  --separator: rgba(255, 255, 255, 0.08);
+  --fill: rgba(255, 255, 255, 0.06);
+  --fill-secondary: rgba(255, 255, 255, 0.10);
+  --fill-tertiary: rgba(255, 255, 255, 0.08);
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+
+  --btn-shadow-primary: 0 4px 16px rgba(255, 107, 61, 0.25), 0 1px 3px rgba(255, 107, 61, 0.15);
+  --btn-shadow-primary-hover: 0 8px 28px rgba(255, 107, 61, 0.35), 0 2px 6px rgba(255, 107, 61, 0.2);
+  --btn-shadow-primary-active: 0 2px 8px rgba(255, 107, 61, 0.2);
+  --btn-shadow-secondary: 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 0 0.5px rgba(255, 255, 255, 0.06);
+  --btn-shadow-secondary-hover: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 0 0.5px rgba(255, 255, 255, 0.08);
+  --btn-inner-glow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --btn-inner-glow-dark: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  --hero-bg-image: url('/foodbanner-mobile-dark.png');
+}
+
+/* Dark body */
+html.dark body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Dark hero */
+html.dark .hero-bg {
+  background: var(--bg) var(--hero-bg-image) center/cover no-repeat;
+}
+
+html.dark .hero-content {
+  background: linear-gradient(0deg, rgba(10,13,20,0.7) 0%, rgba(10,13,20,0.3) 50%, transparent 100%);
+}
+
+/* Dark hero pills */
+html.dark .exclusion-control,
+html.dark .food-count-pill,
+html.dark .theme-toggle {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  color: var(--text-secondary);
+}
+
+html.dark .exclusion-control label {
+  color: var(--text-secondary);
+}
+
+html.dark .exclusion-control select {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+html.dark .exclusion-control svg {
+  color: var(--text-secondary);
+}
+
+html.dark .food-count-pill {
+  color: var(--text-secondary);
+}
+
+html.dark .food-count-pill svg {
+  color: var(--accent);
+}
+
+html.dark .theme-toggle {
+  color: var(--text-secondary);
+}
+
+/* Dark app-main */
+html.dark .app-main {
+  background: var(--card);
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark tab nav */
+html.dark .tab-nav {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+html.dark .tab.active {
+  background: var(--card-elevated);
+  box-shadow: var(--btn-shadow-secondary), var(--btn-inner-glow-dark);
+}
+
+/* Dark bottom nav - floating dock */
+html.dark .bottom-nav {
+  background: rgba(17, 24, 39, 0.75);
+  backdrop-filter: blur(30px) saturate(200%);
+  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.4), 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+}
+
+html.dark .bn-tab {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+html.dark .bn-tab svg {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+html.dark .bn-tab.active {
+  background: rgba(255, 107, 61, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(255, 107, 61, 0.25);
+  box-shadow: 0 0 16px rgba(255, 107, 61, 0.12);
+}
+
+html.dark .bn-tab.active svg {
+  color: var(--accent);
+}
+
+/* Dark food form */
+html.dark .ff-name-input {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+html.dark .ff-name-input:focus {
+  background: rgba(255, 255, 255, 0.10);
+  box-shadow: 0 0 0 3px rgba(255, 107, 61, 0.2);
+  border-color: rgba(255, 107, 61, 0.3);
+}
+
+html.dark .ff-name-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+html.dark .ff-comment-input {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+html.dark .ff-comment-input:focus {
+  background: rgba(255, 255, 255, 0.10);
+  box-shadow: 0 0 0 3px rgba(255, 107, 61, 0.2);
+  border-color: rgba(255, 107, 61, 0.3);
+}
+
+html.dark .ff-comment-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+html.dark .ff-label {
+  color: var(--text-secondary);
+}
+
+html.dark .ff-optional {
+  color: var(--text-tertiary);
+}
+
+html.dark .food-form select {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+html.dark .food-form select:focus {
+  background: rgba(255, 255, 255, 0.10);
+  box-shadow: 0 0 0 3px rgba(255, 107, 61, 0.2);
+}
+
+/* Dark food form submit */
+html.dark .food-form > button[type="submit"] {
+  background: #0F1623;
+  border: 1px solid rgba(255, 107, 61, 0.3);
+  color: var(--accent);
+  box-shadow: 0 0 16px rgba(255, 107, 61, 0.12), var(--btn-shadow-secondary);
+}
+
+html.dark .food-form > button[type="submit"]:hover {
+  border-color: rgba(255, 107, 61, 0.45);
+  box-shadow: 0 0 24px rgba(255, 107, 61, 0.18), var(--btn-shadow-secondary-hover);
+  background: #111827;
+}
+
+html.dark .food-form > button[type="submit"]:active:not(:disabled) {
+  transform: scale(0.97);
+  background: #0D1320;
+}
+
+/* Dark star rating */
+html.dark .star {
+  color: var(--text-tertiary);
+}
+
+html.dark .star.filled {
+  color: var(--accent);
+}
+
+html.dark .stars-row {
+  color: var(--accent);
+}
+
+/* Dark chips - glass appearance */
+html.dark .chip {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), inset 0 0.5px 0 rgba(255, 255, 255, 0.04);
+}
+
+html.dark .chip:hover {
+  background: rgba(255, 255, 255, 0.10);
+  color: var(--text);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 0.5px 0 rgba(255, 255, 255, 0.06);
+}
+
+html.dark .chip.active {
+  background: rgba(255, 107, 61, 0.08);
+  color: var(--accent);
+  border: 1px solid rgba(255, 107, 61, 0.3);
+  box-shadow: 0 0 16px rgba(255, 107, 61, 0.12), inset 0 0.5px 0 rgba(255, 107, 61, 0.1);
+}
+
+html.dark .chip-count {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+html.dark .chip.active .chip-count {
+  background: rgba(255, 107, 61, 0.15);
+  color: var(--accent);
+}
+
+/* Dark food card */
+html.dark .food-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+html.dark .food-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+html.dark .food-name {
+  color: var(--text);
+}
+
+html.dark .food-card-details {
+  color: var(--text-secondary);
+}
+
+html.dark .detail-label {
+  color: var(--text-tertiary);
+}
+
+html.dark .food-comment {
+  color: var(--text-tertiary);
+}
+
+html.dark .drag-handle {
+  color: var(--text-tertiary);
+}
+
+html.dark .drag-handle:hover {
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+html.dark .btn-icon {
+  color: var(--text-tertiary);
+}
+
+html.dark .btn-icon:hover {
+  color: var(--accent);
+  background: rgba(255, 107, 61, 0.1);
+}
+
+html.dark .food-group-label {
+  color: var(--text);
+}
+
+html.dark .food-group-count {
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Dark picker card */
+html.dark .picker-card {
+  background: var(--card-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  border-radius: 32px;
+}
+
+html.dark .pick-idle-title {
+  color: var(--text);
+}
+
+html.dark .pick-idle-sub {
+  color: var(--text-secondary);
+}
+
+html.dark .pick-result-name {
+  color: var(--text);
+}
+
+html.dark .pick-result-cuisine {
+  color: var(--text-secondary);
+}
+
+html.dark .eligible-bar {
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Dark primary CTA button - "Pick for me!" */
+html.dark .btn-primary {
+  background: #0F1623;
+  border: 1px solid rgba(255, 107, 61, 0.3);
+  color: var(--accent);
+  box-shadow: 0 0 16px rgba(255, 107, 61, 0.12), var(--btn-shadow-secondary);
+}
+
+html.dark .btn-primary svg {
+  color: var(--accent);
+}
+
+html.dark .btn-primary:hover {
+  border-color: rgba(255, 107, 61, 0.45);
+  box-shadow: 0 0 24px rgba(255, 107, 61, 0.18), var(--btn-shadow-secondary-hover);
+  background: #111827;
+}
+
+html.dark .btn-primary:active:not(:disabled) {
+  transform: scale(0.97);
+  background: #0D1320;
+}
+
+html.dark .btn-primary:disabled {
+  opacity: 0.3;
+}
+
+/* Dark secondary button */
+html.dark .btn-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--btn-shadow-secondary);
+}
+
+html.dark .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.10);
+  box-shadow: var(--btn-shadow-secondary-hover);
+}
+
+/* Dark confirm button */
+html.dark .btn-confirm {
+  background: #0F1623;
+  border: 1px solid rgba(255, 107, 61, 0.3);
+  color: var(--accent);
+  box-shadow: 0 0 16px rgba(255, 107, 61, 0.12), var(--btn-shadow-secondary);
+}
+
+html.dark .btn-confirm:hover {
+  border-color: rgba(255, 107, 61, 0.45);
+  box-shadow: 0 0 24px rgba(255, 107, 61, 0.18);
+  background: #111827;
+}
+
+html.dark .btn-confirm svg {
+  color: var(--accent);
+}
+
+/* Dark danger button */
+html.dark .btn-danger {
+  background: rgba(255, 59, 48, 0.12);
+  color: #FF6B6B;
+  box-shadow: 0 1px 3px rgba(255, 59, 48, 0.15);
+}
+
+html.dark .btn-danger:hover {
+  background: rgba(255, 59, 48, 0.18);
+}
+
+/* Dark modal */
+html.dark .modal-overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+html.dark .modal-sheet {
+  background: var(--card);
+  box-shadow: 0 -4px 32px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: none;
+}
+
+@media (min-width: 768px) {
+  html.dark .modal-sheet {
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+}
+
+html.dark .modal-handle {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+html.dark .modal-food-preview {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+html.dark .modal-food-name {
+  color: var(--text);
+}
+
+html.dark .modal-cuisine {
+  color: var(--text-secondary);
+}
+
+html.dark .modal-meal-badge {
+  background: rgba(255, 107, 61, 0.12);
+  border: 1px solid rgba(255, 107, 61, 0.25);
+  color: var(--accent);
+  box-shadow: none;
+}
+
+html.dark .modal-details {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+html.dark .modal-detail-row {
+  color: var(--text-secondary);
+}
+
+html.dark .modal-detail-row svg {
+  color: var(--text-tertiary);
+}
+
+html.dark .modal-note {
+  color: var(--text-tertiary);
+}
+
+html.dark .modal-reassure {
+  color: var(--text-secondary);
+}
+
+html.dark .modal-btn-cancel {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--btn-shadow-secondary);
+}
+
+html.dark .modal-btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.10);
+  box-shadow: var(--btn-shadow-secondary-hover);
+}
+
+html.dark .modal-btn-confirm {
+  background: #0F1623;
+  border: 1px solid rgba(255, 107, 61, 0.3);
+  color: var(--accent);
+  box-shadow: 0 0 16px rgba(255, 107, 61, 0.12), var(--btn-shadow-secondary);
+}
+
+html.dark .modal-btn-confirm:hover {
+  border-color: rgba(255, 107, 61, 0.45);
+  box-shadow: 0 0 24px rgba(255, 107, 61, 0.18);
+}
+
+html.dark .modal-btn-confirm svg {
+  color: var(--accent);
+}
+
+html.dark .modal-spinner {
+  border-color: rgba(255, 255, 255, 0.15);
+  border-top-color: var(--accent);
+}
+
+/* Dark success state */
+html.dark .success-overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+html.dark .success-card {
+  background: var(--card);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+html.dark .success-title {
+  color: var(--text);
+}
+
+html.dark .success-meal-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+html.dark .success-meal-name {
+  color: var(--text);
+}
+
+html.dark .success-meal-type {
+  color: var(--text-secondary);
+}
+
+html.dark .success-btn-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--btn-shadow-secondary);
+}
+
+html.dark .success-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+html.dark .success-btn-primary {
+  background: #0F1623;
+  border: 1px solid rgba(255, 107, 61, 0.3);
+  color: var(--accent);
+  box-shadow: 0 0 16px rgba(255, 107, 61, 0.12), var(--btn-shadow-secondary);
+}
+
+html.dark .success-btn-primary:hover {
+  border-color: rgba(255, 107, 61, 0.45);
+  box-shadow: 0 0 24px rgba(255, 107, 61, 0.18);
+}
+
+/* Dark history */
+html.dark .history-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+html.dark .history-meal {
+  background: rgba(255, 107, 61, 0.1);
+  color: var(--accent);
+}
+
+html.dark .history-food {
+  color: var(--text);
+}
+
+html.dark .history-date {
+  color: var(--text-tertiary);
+}
+
+/* Dark week planner */
+html.dark .day-column {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+html.dark .day-column h3 {
+  color: var(--text);
+}
+
+html.dark .day-meal.empty {
+  color: var(--text-tertiary);
+}
+
+html.dark .meal-label {
+  color: var(--accent);
+}
+
+html.dark .meal-food {
+  color: var(--text-secondary);
+}
+
+html.dark .week-note {
+  color: var(--text-secondary);
+}
+
+/* Dark room manager */
+html.dark .room-manager {
+  background: var(--card-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+  border-radius: 32px;
+}
+
+html.dark .room-toggle {
+  color: var(--text-secondary);
+}
+
+html.dark .room-toggle:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+html.dark .room-active .room-toggle:hover {
+  background: rgba(10, 132, 255, 0.06);
+}
+
+html.dark .room-toggle svg {
+  color: var(--text-tertiary);
+}
+
+html.dark .room-active .room-toggle svg {
+  color: var(--blue);
+}
+
+html.dark .room-chevron {
+  color: var(--text-tertiary);
+}
+
+html.dark .room-intro {
+  color: var(--text-secondary);
+}
+
+html.dark .room-active {
+  background: rgba(10, 132, 255, 0.06);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3), 0 0 0 1.5px rgba(10, 132, 255, 0.2);
+}
+
+html.dark .room-active .room-toggle {
+  color: var(--blue);
+}
+
+html.dark .room-label {
+  color: var(--text-tertiary);
+}
+
+html.dark .room-code {
+  color: var(--blue);
+}
+
+html.dark .room-input {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+html.dark .room-input:focus {
+  background: rgba(255, 255, 255, 0.10);
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.2);
+  border-color: rgba(10, 132, 255, 0.3);
+}
+
+html.dark .room-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+html.dark .btn-room {
+  background: #0F1623;
+  border: 1px solid rgba(255, 107, 61, 0.3);
+  color: var(--accent);
+  box-shadow: 0 0 16px rgba(255, 107, 61, 0.12), var(--btn-shadow-secondary);
+}
+
+html.dark .btn-room:hover {
+  border-color: rgba(255, 107, 61, 0.45);
+  box-shadow: 0 0 24px rgba(255, 107, 61, 0.18);
+  background: #111827;
+}
+
+html.dark .btn-room:active:not(:disabled) {
+  background: #0D1320;
+}
+
+html.dark .btn-copy {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--blue);
+  box-shadow: var(--btn-shadow-secondary);
+}
+
+html.dark .btn-copy:hover {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+html.dark .btn-share {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--blue);
+  box-shadow: var(--btn-shadow-secondary);
+}
+
+html.dark .btn-share:hover {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+html.dark .btn-leave {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  box-shadow: var(--btn-shadow-secondary);
+}
+
+html.dark .btn-leave:hover {
+  background: rgba(255, 255, 255, 0.10);
+  color: var(--text);
+}
+
+html.dark .btn-pin {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  box-shadow: var(--btn-shadow-secondary);
+}
+
+html.dark .btn-pin:hover {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+html.dark .btn-pin-active {
+  background: rgba(255, 200, 50, 0.12);
+  border: 1px solid rgba(255, 200, 50, 0.25);
+  color: #FFD4B8;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+html.dark .btn-pin-active:hover {
+  background: rgba(255, 200, 50, 0.18);
+}
+
+html.dark .btn-pin-active svg {
+  color: #FFD4B8;
+}
+
+html.dark .pinned-item {
+  background: rgba(10, 132, 255, 0.08);
+  border: 1px solid rgba(10, 132, 255, 0.2);
+}
+
+html.dark .pinned-item:hover {
+  background: rgba(10, 132, 255, 0.14);
+}
+
+html.dark .room-active .pinned-item:not(.pinned-item-active) {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+html.dark .room-active .pinned-item:not(.pinned-item-active):hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+html.dark .pinned-item-active {
+  background: rgba(10, 132, 255, 0.14);
+  border: 1px solid rgba(10, 132, 255, 0.3);
+}
+
+html.dark .pinned-code {
+  color: var(--text);
+}
+
+html.dark .pinned-item:not(.pinned-item-active) .pinned-code:hover {
+  color: var(--blue);
+}
+
+html.dark .pinned-item-active .pinned-code {
+  color: var(--blue);
+}
+
+html.dark .btn-unpin {
+  color: var(--text-tertiary);
+}
+
+html.dark .btn-unpin:hover {
+  background: rgba(255, 59, 48, 0.12);
+  color: #FF6B6B;
+}
+
+html.dark .room-error {
+  color: #FF6B6B;
+}
+
+html.dark .room-hint {
+  color: var(--text-tertiary);
+}
+
+html.dark .pinned-label {
+  color: var(--text-tertiary);
+}
+
+/* Dark empty state */
+html.dark .empty-state {
+  color: var(--text-tertiary);
+}
+
+/* Dark headings */
+html.dark h2 {
+  color: var(--text);
+}
+
+/* Dark responsive dark hero */
+@media (min-width: 768px) {
+  html.dark {
+    --hero-bg-image: url('/foodbanner-desktop-dark.png');
   }
 }
