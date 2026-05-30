@@ -6,8 +6,9 @@ const HISTORY_KEY = 'food-selector-history'
 export function loadFoods(): Food[] {
   try {
     const raw = localStorage.getItem(FOODS_KEY)
-    return raw ? JSON.parse(raw) : []
-  } catch {
+    const parsed = raw ? JSON.parse(raw) : []
+    return Array.isArray(parsed) ? parsed : []
+  } catch (e) {
     return []
   }
 }
@@ -19,8 +20,9 @@ export function saveFoods(foods: Food[]): void {
 export function loadHistory(): HistoryEntry[] {
   try {
     const raw = localStorage.getItem(HISTORY_KEY)
-    return raw ? JSON.parse(raw) : []
-  } catch {
+    const parsed = raw ? JSON.parse(raw) : []
+    return Array.isArray(parsed) ? parsed : []
+  } catch (e) {
     return []
   }
 }

@@ -16,6 +16,8 @@ interface FoodPickerProps {
 type PickerPhase = 'idle' | 'picked' | 'confirming' | 'success'
 
 export default function FoodPicker({ foods, history, onPick, exclusionDays, roomId, onViewHistory }: FoodPickerProps) {
+  const safeFoods = Array.isArray(foods) ? foods : []
+  const safeHistory = Array.isArray(history) ? history : []
   const [selectedMeal, setSelectedMeal] = useState<MealType>('lunch')
   const [result, setResult] = useState<Food | null>(null)
   const [phase, setPhase] = useState<PickerPhase>('idle')
@@ -23,11 +25,11 @@ export default function FoodPicker({ foods, history, onPick, exclusionDays, room
   function getEligibleFoods(): Food[] {
     const cutoff = Date.now() - exclusionDays * 86400000
     const recentFoodIds = new Set(
-      history
+      safeHistory
         .filter(h => h.timestamp > cutoff && h.mealType === selectedMeal)
         .map(h => h.foodId)
     )
-    return foods.filter(f => f.mealTypes.includes(selectedMeal) && !recentFoodIds.has(f.id))
+    return safeFoods.filter(f => f.mealTypes.includes(selectedMeal) && !recentFoodIds.has(f.id))
   }
 
   const pickRandom = useCallback(() => {
