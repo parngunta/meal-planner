@@ -3023,6 +3023,34 @@ html.dark .pinned-label {
   color: var(--text-tertiary);
 }
 
+html.dark .room-name-input {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(91, 147, 219, 0.35);
+  color: var(--text);
+}
+
+html.dark .room-name-input:focus {
+  border-color: #5B93DB;
+}
+
+html.dark .room-name-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+html.dark .btn-name {
+  border-color: rgba(91, 147, 219, 0.3);
+  color: #5B93DB;
+}
+
+html.dark .btn-name:hover {
+  border-color: rgba(91, 147, 219, 0.6);
+  background: rgba(91, 147, 219, 0.12);
+}
+
+html.dark .pinned-code-sub {
+  color: var(--text-tertiary);
+}
+
 /* Dark empty state */
 html.dark .empty-state {
   color: var(--text-tertiary);
