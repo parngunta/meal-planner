@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { isConfigured } from '../firebase'
-import { createRoom, joinRoom, leaveRoom, getPinnedRooms, addPinnedRoom, removePinnedRoom } from '../roomService'
+import { createRoom, joinRoom, leaveRoom, getPinnedRooms, addPinnedRoom, removePinnedRoom, getRoomNames, setRoomName } from '../roomService'
 
 interface RoomManagerProps {
   currentRoom: string | null
@@ -17,6 +17,9 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
   const [shared, setShared] = useState(false)
   const [open, setOpen] = useState(false)
   const [pinnedRooms, setPinnedRooms] = useState<string[]>(() => getPinnedRooms())
+  const [roomNames, setRoomNames] = useState<Record<string, string>>(() => getRoomNames())
+  const [editingName, setEditingName] = useState(false)
+  const [nameInput, setNameInput] = useState('')
 
   if (!isConfigured) {
     return null
@@ -35,6 +38,23 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
 
   function handleUnpin(code: string) {
     setPinnedRooms(removePinnedRoom(code))
+  }
+
+  function handleSaveName() {
+    if (!currentRoom) return
+    setRoomName(currentRoom, nameInput)
+    setRoomNames(getRoomNames())
+    setEditingName(false)
+  }
+
+  function handleStartEditName() {
+    if (!currentRoom) return
+    setNameInput(roomNames[currentRoom] || '')
+    setEditingName(true)
+  }
+
+  function displayName(code: string): string {
+    return roomNames[code] || code
   }
 
   async function handleCreate() {
@@ -114,7 +134,7 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
           <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
           <path d="M16 3.13a4 4 0 0 1 0 7.75" />
         </svg>
-        <span>{currentRoom ? `Room: ${currentRoom}` : 'Room Sync'}</span>
+        <span>{currentRoom ? (roomNames[currentRoom] || `Room: ${currentRoom}`) : 'Room Sync'}</span>
         <svg className={`room-chevron${open ? ' room-chevron-open' : ''}`} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <polyline points="6 9 12 15 18 9" />
         </svg>
@@ -127,6 +147,28 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
                 <div className="room-info">
                   <span className="room-label">Room</span>
                   <span className="room-code">{currentRoom}</span>
+                  {editingName ? (
+                    <div className="room-name-edit">
+                      <input
+                        className="room-name-input"
+                        value={nameInput}
+                        onChange={e => setNameInput(e.target.value)}
+                        placeholder="Room name"
+                        maxLength={30}
+                        autoFocus
+                        onKeyDown={e => {
+                          if (e.key === 'Enter') handleSaveName()
+                          if (e.key === 'Escape') setEditingName(false)
+                        }}
+                      />
+                      <button className="btn-name-save" onClick={handleSaveName}>✓</button>
+                      <button className="btn-name-cancel" onClick={() => setEditingName(false)}>✕</button>
+                    </div>
+                  ) : (
+                    <button className="btn-name" onClick={handleStartEditName} title="Name this room">
+                      {roomNames[currentRoom] ? roomNames[currentRoom] : '+ Name'}
+                    </button>
+                  )}
                 </div>
                 <div className="room-status-actions">
                   <button
@@ -157,7 +199,10 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
                   <div className="pinned-list">
                     {pinnedRooms.map(code => (
                       <div key={code} className={`pinned-item${code === currentRoom ? ' pinned-item-active' : ''}`}>
-                        <span className="pinned-code" onClick={() => code !== currentRoom && onJoin(code)}>{code}</span>
+                        <span className={`pinned-code${roomNames[code] ? ' pinned-has-name' : ''}`} onClick={() => code !== currentRoom && onJoin(code)}>
+                          {displayName(code)}
+                        </span>
+                        {!roomNames[code] && <span className="pinned-code-sub" onClick={() => code !== currentRoom && onJoin(code)}>{code}</span>}
                         <button className="btn-unpin" onClick={() => handleUnpin(code)} title="Unpin room">
                           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                             <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
@@ -178,7 +223,10 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
                   <div className="pinned-list">
                     {pinnedRooms.map(code => (
                       <div key={code} className="pinned-item">
-                        <span className="pinned-code" onClick={() => onJoin(code)}>{code}</span>
+                        <span className={`pinned-code${roomNames[code] ? ' pinned-has-name' : ''}`} onClick={() => onJoin(code)}>
+                          {displayName(code)}
+                        </span>
+                        {!roomNames[code] && <span className="pinned-code-sub" onClick={() => onJoin(code)}>{code}</span>}
                         <button className="btn-unpin" onClick={() => handleUnpin(code)} title="Unpin room">
                           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                             <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
