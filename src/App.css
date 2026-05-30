@@ -2159,7 +2159,7 @@ html.dark {
   --btn-inner-glow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
   --btn-inner-glow-dark: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 
-  --hero-bg-image: url('/foodbanner-mobile-dark.png');
+  --hero-bg-image: url('/foodbanner-mobile-dark2.png');
 }
 
 /* Dark body */
@@ -2941,6 +2941,6 @@ html.dark h2 {
 /* Dark responsive dark hero */
 @media (min-width: 768px) {
   html.dark {
-    --hero-bg-image: url('/foodbanner-desktop-dark.png');
+    --hero-bg-image: url('/foodbanner-desktop-dark2.png');
   }
 }
