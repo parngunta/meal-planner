@@ -1586,7 +1586,7 @@ h2 {
 /* ===== RESPONSIVE ===== */
 @media (min-width: 768px) {
   :root {
-    --hero-bg-image: url('/foodbanner4.png');
+    --hero-bg-image: url('/foodbanner-desktop.png');
   }
   .app {
     max-width: 720px;
