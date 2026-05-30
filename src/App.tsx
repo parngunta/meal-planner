@@ -12,6 +12,7 @@ import {
   listenToRoom,
   getCurrentRoom,
   stopListening,
+  setRoomNameToDb,
 } from './roomService'
 import FoodForm from './components/FoodForm'
 import FoodList from './components/FoodList'
@@ -85,14 +86,16 @@ export default function App() {
   })
   const unlistenRef = useRef<(() => void) | null>(null)
   const inRoom = isConfigured && currentRoom !== null
+  const [currentRoomName, setCurrentRoomName] = useState<string | null>(null)
 
   useEffect(() => {
     if (!isConfigured || !currentRoom) return
-    const unlisten = listenToRoom(currentRoom, (roomFoods, roomHistory) => {
+    const unlisten = listenToRoom(currentRoom, (roomFoods, roomHistory, roomName) => {
       setFoods(roomFoods)
       saveFoods(roomFoods)
       setHistory(roomHistory)
       saveHistory(roomHistory)
+      setCurrentRoomName(roomName)
     })
     unlistenRef.current = unlisten
     return () => {
@@ -220,6 +223,7 @@ export default function App() {
     }
     stopListening()
     setCurrentRoom(null)
+    setCurrentRoomName(null)
     setFoods(loadFoods())
     setHistory(loadHistory())
   }
@@ -258,8 +262,12 @@ export default function App() {
       <main className="app-main">
         <RoomManager
           currentRoom={currentRoom}
+          currentRoomName={currentRoomName}
           onJoin={handleJoinRoom}
           onLeave={handleLeaveRoom}
+          onSetRoomName={(name) => {
+            if (currentRoom) setRoomNameToDb(currentRoom, name).catch(() => {})
+          }}
         />
 
         <nav className="tab-nav">

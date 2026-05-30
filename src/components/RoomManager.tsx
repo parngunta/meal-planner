@@ -1,14 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { isConfigured } from '../firebase'
-import { createRoom, joinRoom, leaveRoom, getPinnedRooms, addPinnedRoom, removePinnedRoom, getRoomNames, setRoomName } from '../roomService'
+import { createRoom, joinRoom, leaveRoom, getPinnedRooms, addPinnedRoom, removePinnedRoom, getRoomNames } from '../roomService'
 
 interface RoomManagerProps {
   currentRoom: string | null
+  currentRoomName: string | null
   onJoin: (code: string) => void
   onLeave: () => void
+  onSetRoomName: (name: string) => void
 }
 
-export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManagerProps) {
+export default function RoomManager({ currentRoom, currentRoomName, onJoin, onLeave, onSetRoomName }: RoomManagerProps) {
   const [joinCode, setJoinCode] = useState('')
   const [creating, setCreating] = useState(false)
   const [joining, setJoining] = useState(false)
@@ -20,6 +22,12 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
   const [roomNames, setRoomNames] = useState<Record<string, string>>(() => getRoomNames())
   const [editingName, setEditingName] = useState(false)
   const [nameInput, setNameInput] = useState('')
+
+  useEffect(() => {
+    if (currentRoomName) {
+      setRoomNames(getRoomNames())
+    }
+  }, [currentRoomName])
 
   if (!isConfigured) {
     return null
@@ -42,19 +50,23 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
 
   function handleSaveName() {
     if (!currentRoom) return
-    setRoomName(currentRoom, nameInput)
-    setRoomNames(getRoomNames())
+    onSetRoomName(nameInput)
     setEditingName(false)
   }
 
   function handleStartEditName() {
-    if (!currentRoom) return
-    setNameInput(roomNames[currentRoom] || '')
+    setNameInput(currentRoomName || '')
     setEditingName(true)
   }
 
-  function displayName(code: string): string {
+  function displayNameForCode(code: string): string {
+    if (code === currentRoom && currentRoomName) return currentRoomName
     return roomNames[code] || code
+  }
+
+  function hasNameForCode(code: string): boolean {
+    if (code === currentRoom && currentRoomName) return true
+    return !!roomNames[code]
   }
 
   async function handleCreate() {
@@ -134,7 +146,7 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
           <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
           <path d="M16 3.13a4 4 0 0 1 0 7.75" />
         </svg>
-        <span>{currentRoom ? (roomNames[currentRoom] || `Room: ${currentRoom}`) : 'Room Sync'}</span>
+        <span>{currentRoom ? (currentRoomName || `Room: ${currentRoom}`) : 'Room Sync'}</span>
         <svg className={`room-chevron${open ? ' room-chevron-open' : ''}`} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <polyline points="6 9 12 15 18 9" />
         </svg>
@@ -166,7 +178,7 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
                     </div>
                   ) : (
                     <button className="btn-name" onClick={handleStartEditName} title="Name this room">
-                      {roomNames[currentRoom] ? roomNames[currentRoom] : '+ Name'}
+                      {currentRoomName ? currentRoomName : '+ Name'}
                     </button>
                   )}
                 </div>
@@ -199,10 +211,10 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
                   <div className="pinned-list">
                     {pinnedRooms.map(code => (
                       <div key={code} className={`pinned-item${code === currentRoom ? ' pinned-item-active' : ''}`}>
-                        <span className={`pinned-code${roomNames[code] ? ' pinned-has-name' : ''}`} onClick={() => code !== currentRoom && onJoin(code)}>
-                          {displayName(code)}
+                        <span className={`pinned-code${hasNameForCode(code) ? ' pinned-has-name' : ''}`} onClick={() => code !== currentRoom && onJoin(code)}>
+                          {displayNameForCode(code)}
                         </span>
-                        {!roomNames[code] && <span className="pinned-code-sub" onClick={() => code !== currentRoom && onJoin(code)}>{code}</span>}
+                        {!hasNameForCode(code) && <span className="pinned-code-sub" onClick={() => code !== currentRoom && onJoin(code)}>{code}</span>}
                         <button className="btn-unpin" onClick={() => handleUnpin(code)} title="Unpin room">
                           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                             <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
@@ -223,10 +235,10 @@ export default function RoomManager({ currentRoom, onJoin, onLeave }: RoomManage
                   <div className="pinned-list">
                     {pinnedRooms.map(code => (
                       <div key={code} className="pinned-item">
-                        <span className={`pinned-code${roomNames[code] ? ' pinned-has-name' : ''}`} onClick={() => onJoin(code)}>
-                          {displayName(code)}
+                        <span className={`pinned-code${hasNameForCode(code) ? ' pinned-has-name' : ''}`} onClick={() => onJoin(code)}>
+                          {displayNameForCode(code)}
                         </span>
-                        {!roomNames[code] && <span className="pinned-code-sub" onClick={() => onJoin(code)}>{code}</span>}
+                        {!hasNameForCode(code) && <span className="pinned-code-sub" onClick={() => onJoin(code)}>{code}</span>}
                         <button className="btn-unpin" onClick={() => handleUnpin(code)} title="Unpin room">
                           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                             <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />

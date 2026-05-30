@@ -107,6 +107,17 @@ export function getRoomName(code: string): string | null {
   return names[upper] || null
 }
 
+export async function setRoomNameToDb(roomCode: string, name: string): Promise<void> {
+  if (!db || !isConfigured) throw new Error('Firebase not configured')
+  const upper = roomCode.toUpperCase().trim()
+  if (name.trim()) {
+    await set(ref(db, `${ROOMS_KEY}/${upper}/name`), name.trim())
+  } else {
+    await remove(ref(db, `${ROOMS_KEY}/${upper}/name`))
+  }
+  setRoomName(upper, name)
+}
+
 export async function addFoodToRoom(roomCode: string, food: Food): Promise<void> {
   if (!db || !isConfigured) throw new Error('Firebase not configured')
   await set(ref(db, `${ROOMS_KEY}/${roomCode}/foods/${food.id}`), food)
@@ -139,18 +150,20 @@ export async function updateFoodToRoom(roomCode: string, food: Food): Promise<vo
 
 let currentListenerRoom: string | null = null
 
-export function listenToRoom(roomCode: string, onUpdate: (foods: Food[], history: HistoryEntry[]) => void): () => void {
+export function listenToRoom(roomCode: string, onUpdate: (foods: Food[], history: HistoryEntry[], roomName: string | null) => void): () => void {
   if (!db || !isConfigured) return () => {}
   stopListening()
   currentListenerRoom = roomCode
   const foodsRef = ref(db, `${ROOMS_KEY}/${roomCode}/foods`)
   const historyRef = ref(db, `${ROOMS_KEY}/${roomCode}/history`)
+  const nameRef = ref(db, `${ROOMS_KEY}/${roomCode}/name`)
 
   let currentFoods: Food[] = []
   let currentHistory: HistoryEntry[] = []
+  let currentName: string | null = null
 
   function emitUpdate() {
-    onUpdate(currentFoods, currentHistory)
+    onUpdate(currentFoods, currentHistory, currentName)
   }
 
   onValue(foodsRef, (snapshot) => {
@@ -165,6 +178,12 @@ export function listenToRoom(roomCode: string, onUpdate: (foods: Food[], history
     emitUpdate()
   })
 
+  onValue(nameRef, (snapshot) => {
+    currentName = snapshot.val() || null
+    setRoomName(roomCode, currentName || '')
+    emitUpdate()
+  })
+
   return () => stopListening()
 }
 
@@ -172,7 +191,9 @@ export function stopListening(): void {
   if (!db || !currentListenerRoom) return
   const foodsRef = ref(db, `${ROOMS_KEY}/${currentListenerRoom}/foods`)
   const historyRef = ref(db, `${ROOMS_KEY}/${currentListenerRoom}/history`)
+  const nameRef = ref(db, `${ROOMS_KEY}/${currentListenerRoom}/name`)
   off(foodsRef)
   off(historyRef)
+  off(nameRef)
   currentListenerRoom = null
 }
