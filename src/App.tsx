@@ -214,6 +214,7 @@ export default function App() {
 
   function handleJoinRoom(code: string) {
     setCurrentRoom(code)
+    setCurrentRoomName(null)
   }
 
   function handleLeaveRoom() {
