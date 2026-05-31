@@ -2083,8 +2083,6 @@ h2 {
   padding: 3px 10px 3px 12px;
   background: rgba(91, 147, 219, 0.1);
   border: 1px solid rgba(91, 147, 219, 0.25);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   border-radius: 9999px;
   transition: background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
 }
@@ -2142,6 +2140,14 @@ h2 {
 
 .pinned-item:not(.pinned-item-active) .pinned-code:hover {
   color: #5B93DB;
+}
+
+.room-idle .pinned-item .pinned-code {
+  color: #3B73B5;
+}
+
+.room-idle .pinned-item .pinned-code-sub {
+  color: #6B97CB;
 }
 
 .room-idle .pinned-item:hover .pinned-code {
@@ -3022,6 +3028,14 @@ html.dark .pinned-item-active {
 
 html.dark .pinned-code {
   color: var(--text);
+}
+
+html.dark .room-idle .pinned-item .pinned-code {
+  color: var(--blue);
+}
+
+html.dark .room-idle .pinned-item .pinned-code-sub {
+  color: rgba(255, 255, 255, 0.65);
 }
 
 html.dark .pinned-item:not(.pinned-item-active) .pinned-code:hover {
