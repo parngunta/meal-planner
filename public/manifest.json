@@ -1,0 +1,13 @@
+{
+  "name": "What's for Lunch?",
+  "short_name": "Lunch?",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "type": "image/png",
+      "sizes": "any"
+    }
+  ]
+}
